@@ -1,0 +1,87 @@
+/* node generate-picturelist.js */
+
+window.__PICTURELIST__ = [
+  {
+    "id": "pic_d432b13d_0",
+    "file": "image1.jpg",
+    "caption": "image1",
+    "mimeType": "image/jpeg",
+    "sizeBytes": 1374456,
+    "sizeKB": 1342.2,
+    "hash": "d432b13d",
+    "sortIndex": 0
+  },
+  {
+    "id": "pic_19dc4d53_1",
+    "file": "image2.jpg",
+    "caption": "image2",
+    "mimeType": "image/jpeg",
+    "sizeBytes": 1189012,
+    "sizeKB": 1161.1,
+    "hash": "19dc4d53",
+    "sortIndex": 1
+  },
+  {
+    "id": "pic_04268966_2",
+    "file": "image3.jpg",
+    "caption": "image3",
+    "mimeType": "image/jpeg",
+    "sizeBytes": 77387,
+    "sizeKB": 75.6,
+    "hash": "04268966",
+    "sortIndex": 2
+  },
+  {
+    "id": "pic_1f163943_3",
+    "file": "image4.jpg",
+    "caption": "image4",
+    "mimeType": "image/jpeg",
+    "sizeBytes": 600992,
+    "sizeKB": 586.9,
+    "hash": "1f163943",
+    "sortIndex": 3
+  },
+  {
+    "id": "pic_e5abe1cb_4",
+    "file": "image5.jpg",
+    "caption": "image5",
+    "mimeType": "image/jpeg",
+    "sizeBytes": 594301,
+    "sizeKB": 580.4,
+    "hash": "e5abe1cb",
+    "sortIndex": 4
+  },
+  {
+    "id": "pic_2a83a98c_5",
+    "file": "image6.jpg",
+    "caption": "image6",
+    "mimeType": "image/jpeg",
+    "sizeBytes": 437811,
+    "sizeKB": 427.5,
+    "hash": "2a83a98c",
+    "sortIndex": 5
+  },
+  {
+    "id": "pic_91b354a4_6",
+    "file": "image7.jpg",
+    "caption": "image7",
+    "mimeType": "image/jpeg",
+    "sizeBytes": 470611,
+    "sizeKB": 459.6,
+    "hash": "91b354a4",
+    "sortIndex": 6
+  },
+  {
+    "id": "pic_eff6e8d6_7",
+    "file": "image8.jpg",
+    "caption": "image8",
+    "mimeType": "image/jpeg",
+    "sizeBytes": 127972,
+    "sizeKB": 125,
+    "hash": "eff6e8d6",
+    "sortIndex": 7
+  }
+];
+
+/* Signal that the script-tag manifest is ready */
+window.__PICTURELIST_READY__ = true;

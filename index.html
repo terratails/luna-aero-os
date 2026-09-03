@@ -1,0 +1,1286 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="aqua-deep">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+<title>Luna Aero OS</title>
+<meta name="description" content="Glen Paul D. Choco — Web Application Developer & Laravel Specialist. Portfolio as an interactive Frutiger Aero desktop OS."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<div id="boot-screen">
+  <canvas id="boot-canvas"></canvas>
+  <div class="boot-content">
+    <div class="boot-logo-wrap">
+      <div class="boot-orb">
+        <div class="boot-orb-inner"></div>
+        <div class="boot-orb-specular"></div>
+        <div class="boot-orb-reflect"></div>
+      </div>
+      <div class="boot-brand">
+        <span class="boot-name">Luna Aero OS</span>
+        <span class="boot-version">2026 Edition</span>
+        <span style="font-size:11px;color:rgba(200,235,255,0.65);margin-top:4px;font-family:var(--font-ui);">Glen Paul D. Choco</span>
+        <span style="font-size:10px;color:rgba(200,235,255,0.5);font-family:var(--font-ui);">Web Application Developer</span>
+        <span style="font-size:10px;color:rgba(200,235,255,0.4);font-family:var(--font-ui);">Personal Portfolio Environment</span>
+      </div>
+    </div>
+    <div class="boot-progress-wrap">
+      <div class="boot-progress-track">
+        <div class="boot-progress-fill" id="boot-progress"></div>
+      </div>
+      <div class="boot-status" id="boot-status">Initializing kernel...</div>
+    </div>
+    <div class="boot-dots">
+      <div class="bdot"></div><div class="bdot"></div><div class="bdot"></div>
+      <div class="bdot"></div><div class="bdot"></div>
+    </div>
+  </div>
+</div>
+<div id="login-screen" style="display:none;">
+  <canvas id="login-canvas"></canvas>
+  <div class="login-time-wrap">
+    <div class="login-clock" id="login-clock">12:00:00 AM</div>
+    <div class="login-date" id="login-date">Monday, January 1, 2025</div>
+  </div>
+  <div class="login-card" id="login-card">
+    <div class="login-avatar">
+      <div class="la-core">
+        <img src="photo/image.png" alt="Glen Paul D. Choco"
+            style="width:100%;height:100%;object-fit:cover;object-position:center;border-radius:50%;display:block;"
+            onerror="this.style.display='none';this.parentElement.querySelector('.la-fallback').style.display='flex'"/>
+        <span class="la-fallback" style="display:none;align-items:center;justify-content:center;width:100%;height:100%;">GPC</span>
+      </div>
+      <div class="la-ring r1"></div>
+      <div class="la-ring r2"></div>
+      <div class="la-glow"></div>
+    </div>
+    <div class="login-name">Glen Paul D. Choco</div>
+    <div class="login-role">Web Application Developer</div>
+    <button class="login-btn" id="login-btn">
+      <span class="lbtn-shimmer"></span>
+      <span>Enter Portfolio</span>
+      <span class="lbtn-arrow">→</span>
+    </button>
+    <div class="login-hint">Press Enter or click to explore · Double-click icons to open windows</div>
+  </div>
+  <div class="login-corner-info">
+    <span>Bacoor Cavite, PH</span>
+    <span>·</span>
+    <span>Available for Work</span>
+    <span class="avail-dot"></span>
+  </div>
+</div>
+
+<div id="desktop" class="hidden" style="display:none;">
+  <canvas id="wallpaper-canvas"></canvas>
+  <div class="wp-overlay"></div>
+  <div class="desktop-icons" id="desktop-icons">
+    <div class="dicon" data-window="about" tabindex="0" role="button" aria-label="About Glen">
+      <div class="dicon-img">
+        <img src="icons/075.ico" class="dicon-img-real" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt=""/>
+        <div class="dicon-fa" style="display:none">👤</div>
+      </div>
+      <span class="dicon-label">About me</span>
+    </div>
+    <div class="dicon" data-window="photos" tabindex="0" role="button" aria-label="Pictures">
+      <div class="dicon-img">
+        <img src="icons/094.ico" class="dicon-img-real" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt=""/>
+        <div class="dicon-fa" style="display:none">🖼️</div>
+      </div>
+      <span class="dicon-label">Pictures</span>
+    </div>
+    <div class="dicon" data-window="experience" tabindex="0" role="button" aria-label="Experience">
+      <div class="dicon-img">
+        <img src="icons/030.ico" class="dicon-img-real" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt=""/>
+        <div class="dicon-fa" style="display:none">🗂</div>
+      </div>
+      <span class="dicon-label">Experience</span>
+    </div>
+    <div class="dicon" data-window="projects" tabindex="0" role="button" aria-label="Projects">
+      <div class="dicon-img">
+        <img src="icons/053.ico" class="dicon-img-real" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt=""/>
+        <div class="dicon-fa" style="display:none">📂</div>
+      </div>
+      <span class="dicon-label">Projects</span>
+    </div>
+    <div class="dicon" data-window="services" tabindex="0" role="button" aria-label="Services">
+      <div class="dicon-img">
+        <img src="icons/349.ico" class="dicon-img-real" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt=""/>
+        <div class="dicon-fa" style="display:none">💎</div>
+      </div>
+      <span class="dicon-label">Services</span>
+    </div>
+    <div class="dicon" data-window="contact" tabindex="0" role="button" aria-label="Contact">
+      <div class="dicon-img">
+        <img src="icons/093.ico" class="dicon-img-real" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt=""/>
+        <div class="dicon-fa" style="display:none">✉️</div>
+      </div>
+      <span class="dicon-label">Contact</span>
+    </div>
+    <div class="dicon" data-window="terminal" tabindex="0" role="button" aria-label="Terminal">
+      <div class="dicon-img">
+        <img src="icons/285.ico" class="dicon-img-real" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt=""/>
+        <div class="dicon-fa" style="display:none">💻</div>
+      </div>
+      <span class="dicon-label">Terminal</span>
+    </div>
+    <div class="dicon" data-window="music" tabindex="0" role="button" aria-label="Music Player">
+      <div class="dicon-img">
+        <img src="icons/049.ico" class="dicon-img-real" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt=""/>
+        <div class="dicon-fa" style="display:none">🎵</div>
+      </div>
+      <span class="dicon-label">Media Player</span>
+    </div>
+    <div class="dicon" data-window="sysinfo" tabindex="0" role="button" aria-label="How This OS Was Built">
+      <div class="dicon-img">
+        <img src="icons/vista_white.ico" class="dicon-img-real" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt=""/>
+        <div class="dicon-fa" style="display:none">▣</div>
+      </div>
+      <span class="dicon-label">How I Built This</span>
+    </div>
+  </div>
+  <div class="ctx-menu hidden" id="ctx-menu" role="menu">
+    <div class="ctx-item" data-action="about" role="menuitem" tabindex="0"><img src="icons/vista_get_started.ico" class="ctx-icon" onerror="this.style.display='none'" alt=""/><span>About Glen</span></div>
+    <div class="ctx-item" data-action="photos" role="menuitem" tabindex="0">
+      <img src="icons/094.ico" class="ctx-icon" onerror="this.style.display='none'" alt=""/>
+      <span>Pictures</span>
+    </div>
+    <div class="ctx-item" data-action="experience" role="menuitem" tabindex="0"><img src="icons/vista_book_1.ico" class="ctx-icon" onerror="this.style.display='none'" alt=""/><span>Experience</span></div>
+    <div class="ctx-item" data-action="projects" role="menuitem" tabindex="0"><img src="icons/explorer.ico" class="ctx-icon" onerror="this.style.display='none'" alt=""/><span>Projects</span></div>
+    <div class="ctx-divider"></div>
+    <div class="ctx-item" data-action="services" role="menuitem" tabindex="0"><img src="icons/vista_marketplace.ico" class="ctx-icon" onerror="this.style.display='none'" alt=""/><span>Services</span></div>
+    <div class="ctx-item" data-action="contact" role="menuitem" tabindex="0"><img src="icons/vista_messenger.ico" class="ctx-icon" onerror="this.style.display='none'" alt=""/><span>Contact</span></div>
+    <div class="ctx-divider"></div>
+    <div class="ctx-item" data-action="music" role="menuitem" tabindex="0"><img src="icons/itunes1.ico" class="ctx-icon" onerror="this.style.display='none'" alt=""/><span>Media Player</span></div>
+    <div class="ctx-item" data-action="terminal" role="menuitem" tabindex="0"><img src="icons/powershell2.ico" class="ctx-icon" onerror="this.style.display='none'" alt=""/><span>Terminal</span></div>
+    <div class="ctx-divider"></div>
+    <div class="ctx-item" data-action="theme" role="menuitem" tabindex="0"><img src="icons/windowsxpicon.ico" class="ctx-icon" onerror="this.style.display='none'" alt=""/><span>Aero Themes</span></div>
+    <div class="ctx-item" data-action="shortcuts" role="menuitem" tabindex="0"><span class="ctx-icon-txt">⌨</span>Keyboard Shortcuts</div>
+    <div class="ctx-item" data-action="refresh" role="menuitem" tabindex="0"><span class="ctx-icon-txt">↻</span>Refresh Desktop</div>
+  </div>
+
+<div class="os-window hidden" id="win-about" data-title="About Glen — Profile" style="width:720px;height:540px;left:80px;top:60px;">
+  <div class="win-chrome">
+    <div class="win-controls">
+      <button class="win-btn close"    data-action="close"    aria-label="Close"></button>
+      <button class="win-btn minimize" data-action="minimize" aria-label="Minimize"></button>
+      <button class="win-btn maximize" data-action="maximize" aria-label="Maximize"></button>
+    </div>
+    <div class="win-title-bar">
+      <img src="icons/vista_get_started.ico" class="win-title-icon" onerror="this.style.display='none'" alt=""/>
+      <span class="win-title-text">About Glen — Profile</span>
+    </div>
+    <div class="win-toolbar">
+      <div class="wtb-breadcrumb"><span>Luna Aero OS</span><span class="bc-sep">›</span><span>About</span></div>
+      <div class="wtb-right"><button class="wtb-btn primary-btn" onclick="openWindow('contact')">✉ Hire Me</button></div>
+    </div>
+  </div>
+  <div class="win-body">
+    <div class="about-win-layout">
+      <div class="about-sidebar">
+        <div class="asb-avatar" id="asb-avatar-widget">
+          <div class="asb-av-scanframe">
+            <span class="asb-scan-corner tl"></span>
+            <span class="asb-scan-corner tr"></span>
+            <span class="asb-scan-corner bl"></span>
+            <span class="asb-scan-corner br"></span>
+            <span class="asb-scan-line"></span>
+          </div>
+          <img id="asb-profile-img" class="asb-av-photo" src="photo/image.png"
+               alt="Glen Paul D. Choco" loading="lazy" decoding="async" draggable="false"/>
+          <div class="asb-av-core">GPC</div>
+          <div class="asb-av-ring"></div>
+          <div class="asb-av-status"></div>
+          <div class="asb-av-verified" title="Identity Verified">✓</div>
+        </div>
+        <div class="asb-name">Glen Paul D. Choco</div>
+        <div class="asb-role" id="asb-role-text">Web Application Developer</div>
+        <div class="asb-location">📍 Bacoor Cavite, PH</div>
+        <div class="asb-divider"></div>
+        <div class="asb-stat-row"><span class="asb-sl">Experience</span><span class="asb-sv">4+ Years</span></div>
+        <div class="asb-stat-row"><span class="asb-sl">Stack</span><span class="asb-sv">Full-Stack</span></div>
+        <div class="asb-stat-row"><span class="asb-sl">Education</span><span class="asb-sv">M.I.T.</span></div>
+        <div class="asb-stat-row"><span class="asb-sl">Degree</span><span class="asb-sv">B.Sc. I.T.</span></div>
+        <div class="asb-stat-row"><span class="asb-sl">Status</span><span class="asb-sv open">Open ●</span></div>
+        <div class="asb-divider"></div>
+        <div class="asb-stat-row"><span class="asb-sl">Systems Built</span><span class="asb-sv">5+</span></div>
+        <div class="asb-divider"></div>
+        <div class="asb-stack-wrap" id="asb-stack-wrap">
+          <div class="asb-stack-label">Backend</div>
+          <div class="asb-stack-row"><span class="asb-stack-name" style="width:100%;font-size:11px;color:var(--ink-dim);">Laravel · PHP</span></div>
+          <div class="asb-stack-label" style="margin-top:6px;">Database</div>
+          <div class="asb-stack-row"><span class="asb-stack-name" style="width:100%;font-size:11px;color:var(--ink-dim);">MySQL · MariaDB</span></div>
+          <div class="asb-stack-label" style="margin-top:6px;">Frontend</div>
+          <div class="asb-stack-row"><span class="asb-stack-name" style="width:100%;font-size:11px;color:var(--ink-dim);">HTML · CSS · JS · Blade</span></div>
+          <div class="asb-stack-label" style="margin-top:6px;">Tools</div>
+          <div class="asb-stack-row"><span class="asb-stack-name" style="width:100%;font-size:11px;color:var(--ink-dim);">Git · GitHub · Figma · Composer</span></div>
+          <div class="asb-stack-label" style="margin-top:6px;">Learning</div>
+          <div class="asb-stack-row"><span class="asb-stack-name" style="width:100%;font-size:11px;color:var(--ink-dim);">DevOps · Deployment · Infrastructure</span></div>
+        </div>
+        <div class="asb-divider"></div>
+        <a href="mailto:glenpaulchoco@yahoo.com" class="asb-contact-btn">✉ Send Email</a>
+        <a href="mailto:glenpaul.choco@pcu.edu.ph" class="asb-contact-btn" style="margin-top:6px;background:transparent;border:1px solid var(--theme-border);color:var(--theme-accent);">🏫 PCU Email</a>
+      </div>
+      <div class="about-main">
+        <div class="am-section">
+          <h3 class="am-heading">About Me</h3>
+          <p class="am-text">Master's graduate in Information Technology from Philippine Christian University. I've worked as a full-stack web application programmer for nearly four years, building complete systems from database schema through to deployed UI — as a solo developer.</p>
+          <p class="am-text">My work lives at PCU where I architect Laravel applications that handle sensitive academic data at scale. I use Figma to prototype, PHP to power it, and JavaScript to animate the edges.</p>
+          <p class="am-text">My next frontier: DevOps — bridging the gap between the code I write and the infrastructure that runs it.</p>
+        </div>
+        <div class="am-section">
+          <h3 class="am-heading">Education</h3>
+          <div class="am-edu-row">
+            <div class="am-edu-dot grad"></div>
+            <div>
+              <div class="am-edu-degree">Masters in Information Technology</div>
+              <div class="am-edu-school">Philippine Christian University · 2020 – 2023</div>
+              <div class="am-edu-desc">Developed an integrated registrar's system as thesis — full academic record management with enterprise-grade remote access and security.</div>
+            </div>
+          </div>
+          <div class="am-edu-row">
+            <div class="am-edu-dot award"></div>
+            <div>
+              <div class="am-edu-degree">B.Sc. Information Technology</div>
+              <div class="am-edu-school">Philippine Christian University · 2014 – 2018</div>
+              <div class="am-edu-desc">Best Thesis Award 2018 — first 3D modeling technology thesis in university history. Served as 3D Model Animator.</div>
+            </div>
+          </div>
+        </div>
+        <div class="am-section">
+          <h3 class="am-heading">Full Technical Stack</h3>
+          <div class="am-tag-wrap">
+            <span class="am-tag"><img src="icons/techstack/laravel.ico" class="am-tag-ico" onerror="this.style.display='none'" alt=""/>Laravel</span>
+            <span class="am-tag"><img src="icons/techstack/php.ico" class="am-tag-ico" onerror="this.style.display='none'" alt=""/>PHP</span>
+            <span class="am-tag"><img src="icons/techstack/htmlcss.ico" class="am-tag-ico" onerror="this.style.display='none'" alt=""/>HTML/CSS</span>
+            <span class="am-tag"><img src="icons/techstack/mysql.ico" class="am-tag-ico" onerror="this.style.display='none'" alt=""/>MySQL</span>
+            <span class="am-tag"><img src="icons/techstack/javascript.ico" class="am-tag-ico" onerror="this.style.display='none'" alt=""/>JavaScript</span>
+            <span class="am-tag"><img src="icons/techstack/uiux.ico" class="am-tag-ico" onerror="this.style.display='none'" alt=""/>UI/UX (Figma)</span>
+            <span class="am-tag"><img src="icons/techstack/api.ico" class="am-tag-ico" onerror="this.style.display='none'" alt=""/>RESTful API</span>
+            <span class="am-tag"><img src="icons/techstack/devops.ico" class="am-tag-ico" onerror="this.style.display='none'" alt=""/>DevOps (learning)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="win-statusbar">
+    <span>Web Application Developer</span><span class="wsb-sep">·</span>
+    <span>09761281839</span><span class="wsb-sep">·</span>
+    <span>glenpaulchoco@yahoo.com</span>
+  </div>
+</div>
+  <div class="os-window hidden" id="win-photos"
+       data-title="Pictures — Photo Viewer"
+       style="width:860px;height:620px;left:130px;top:55px;">
+    <div class="win-chrome">
+      <div class="win-controls">
+        <button class="win-btn close"    data-action="close"    aria-label="Close"></button>
+        <button class="win-btn minimize" data-action="minimize" aria-label="Minimize"></button>
+        <button class="win-btn maximize" data-action="maximize" aria-label="Maximize"></button>
+      </div>
+      <div class="win-title-bar">
+        <span class="win-title-ico">🖼️</span>
+        <span class="win-title-text">Pictures — Photo Viewer</span>
+      </div>
+      <div class="win-toolbar">
+        <div class="wtb-breadcrumb">
+          <span>Luna Aero OS</span><span class="bc-sep">›</span><span>Pictures</span>
+        </div>
+        <div class="wtb-right">
+          <button class="wtb-btn active" id="pv-view-grid"  title="Grid view">⊞ Grid</button>
+          <button class="wtb-btn"        id="pv-view-list"  title="List view">≡ List</button>
+          <button class="wtb-btn"        id="pv-sort-name"  title="Sort by name">↑ Name</button>
+          <button class="wtb-btn"        id="pv-sort-size"  title="Sort by size">↑ Size</button>
+        </div>
+      </div>
+    </div>
+    <div class="win-body pv-win-body">
+
+      <div class="pv-empty" id="pv-empty">
+        <img src="icons/pictures.ico" class="ctx-icon" onerror="this.style.display='none'" alt=""/>
+        <div class="pv-empty-title">No pictures yet</div>
+        <div class="pv-empty-desc">
+          Add <strong>.jpg</strong> or <strong>.png</strong> files to your
+          <code>pictures/</code> folder, then run:<br/>
+          <code>node generate-picturelist.js</code>
+        </div>
+        <button class="pv-empty-add" id="pv-empty-add-btn">+ Add Photos from Device</button>
+      </div>
+ 
+
+      <div class="pv-grid hidden" id="pv-grid"></div>
+ 
+      <div class="pv-list-view hidden" id="pv-list-view">
+        <div class="pv-list-header">
+          <span class="pvl-col-thumb"></span>
+          <span class="pvl-col-name">Name</span>
+          <span class="pvl-col-type">Type</span>
+          <span class="pvl-col-size">Size</span>
+        </div>
+        <div class="pv-list-rows" id="pv-list-rows"></div>
+      </div>
+
+      <input type="file" id="pv-file-input" accept=".jpg,.jpeg,.png" multiple style="display:none"/>
+    </div>
+    <div class="win-statusbar">
+      <span id="pv-status-count">0 items</span>
+      <span class="wsb-sep">·</span>
+      <span id="pv-status-size">0 KB</span>
+      <span class="wsb-sep">·</span>
+      <span>JPG &amp; PNG only</span>
+    </div>
+  </div>
+  <div class="os-window hidden" id="win-experience" data-title="Experience — Work History" style="width:800px;height:620px;left:160px;top:50px;">
+    <div class="win-chrome">
+      <div class="win-controls">
+        <button class="win-btn close"    data-action="close"    aria-label="Close"></button>
+        <button class="win-btn minimize" data-action="minimize" aria-label="Minimize"></button>
+        <button class="win-btn maximize" data-action="maximize" aria-label="Maximize"></button>
+      </div>
+      <div class="win-title-bar">
+        <img src="icons/vista_book_1.ico" class="win-title-icon" onerror="this.style.display='none'" alt=""/>
+        <span class="win-title-text">Experience — Work History</span>
+      </div>
+      <div class="win-toolbar">
+        <div class="wtb-breadcrumb"><span>Luna Aero OS</span><span class="bc-sep">›</span><span>Experience</span></div>
+      </div>
+    </div>
+    <div class="win-body">
+      <div class="exp-layout">
+        <div class="exp-sidebar">
+          <div class="exp-nav-item active" data-exp="webapp" tabindex="0" role="button"><div class="exp-nav-dot active"></div><div><div class="exp-nav-role">Web App Programmer</div><div class="exp-nav-period">2021 – Present</div></div></div>
+          <div class="exp-nav-item" data-exp="techsupport" tabindex="0" role="button"><div class="exp-nav-dot"></div><div><div class="exp-nav-role">Technical Support</div><div class="exp-nav-period">2018 – 2020</div></div></div>
+          <div class="exp-nav-item" data-exp="masters" tabindex="0" role="button"><div class="exp-nav-dot thesis"></div><div><div class="exp-nav-role">M.I.T. Thesis</div><div class="exp-nav-period">2020 – 2023</div></div></div>
+          <div class="exp-nav-item" data-exp="bsit" tabindex="0" role="button"><div class="exp-nav-dot award"></div><div><div class="exp-nav-role">B.Sc. Thesis</div><div class="exp-nav-period">2018 ·  Award</div></div></div>
+        </div>
+        <div class="exp-detail-pane">
+          <div class="exp-detail active" id="exp-webapp">
+            <div class="exp-detail-header">
+              <span class="exp-status-pill current">Current Position</span>
+              <h3 class="exp-detail-role">Web Application Programmer</h3>
+              <div class="exp-detail-company">Philippine Christian University</div>
+              <div class="exp-detail-period">January 2021 – Present (4+ years)</div>
+            </div>
+            <div class="exp-detail-divider"></div>
+            <ul class="exp-detail-list">
+              <li>Developed and maintained full-stack web applications using Laravel across multiple university systems, serving hundreds of faculty, students, and administrators</li>
+              <li>Architected and shipped both front-end and back-end features — from database schema through API layer to user interface — as a solo developer</li>
+              <li>Designed and documented RESTful APIs consumed by front-end clients and integrated with third-party systems</li>
+              <li>Implemented database integration, query optimization, and security hardening for production academic data systems</li>
+              <li>Built the FERMS facilities management system: reservations, payment flow, AI-powered document verification, and dynamic admin dashboards</li>
+              <li>Built the Alumni Tracer system: PDF exports, feedback statistics, duplicate prevention, and complex query layers</li>
+            </ul>
+            <div class="exp-detail-tags"><span>Laravel</span><span>PHP</span><span>MySQL</span><span>JavaScript</span><span>RESTful API</span><span>Figma</span><span>Blade</span></div>
+          </div>
+          <div class="exp-detail" id="exp-techsupport">
+            <div class="exp-detail-header">
+              <span class="exp-status-pill">2 Years</span>
+              <h3 class="exp-detail-role">Technical Support</h3>
+              <div class="exp-detail-company">Philippine Christian University</div>
+              <div class="exp-detail-period">2018 – 2020</div>
+            </div>
+            <div class="exp-detail-divider"></div>
+            <ul class="exp-detail-list">
+              <li>Assisted students and academic staff in diagnosing and resolving hardware, software, and device-related issues campus-wide</li>
+              <li>Maintained continuous uptime of printers, computers, and network-attached IT equipment in high-traffic university environments</li>
+              <li>Delivered proactive technical guidance and documented preventive recommendations to reduce recurring issue frequency</li>
+              <li>Provided hands-on support during peak academic periods — examinations, enrolment — where system reliability was critical</li>
+            </ul>
+            <div class="exp-detail-tags"><span>IT Support</span><span>Hardware</span><span>Networking</span><span>Troubleshooting</span><span>Documentation</span></div>
+          </div>
+          <div class="exp-detail" id="exp-masters">
+            <div class="exp-detail-header">
+              <span class="exp-status-pill thesis-pill">Masters Thesis</span>
+              <h3 class="exp-detail-role">Integrated Registrar's System</h3>
+              <div class="exp-detail-company">Philippine Christian University — M.I.T. Research</div>
+              <div class="exp-detail-period">2020 – 2023</div>
+            </div>
+            <div class="exp-detail-divider"></div>
+            <p class="exp-detail-para"><em>Development of an Integrated Registrar's System: Enhancing Efficiency, Security, and Remote Access in Academic Administration.</em></p>
+            <p class="exp-detail-para">A complete academic records management platform where students digitally request official documents and administrators securely manage and store student information with enterprise-grade security measures and remote access capabilities.</p>
+            <div class="exp-detail-tags"><span>Laravel</span><span>Academic System</span><span>High Security</span><span>Remote Access</span><span>Full-Stack</span></div>
+          </div>
+          <div class="exp-detail" id="exp-bsit">
+            <div class="exp-detail-header">
+              <span class="exp-status-pill award-pill"> Best Thesis 2018</span>
+              <h3 class="exp-detail-role">3D Model Animator</h3>
+              <div class="exp-detail-company">Philippine Christian University — B.Sc.I.T. Thesis</div>
+              <div class="exp-detail-period">2018</div>
+            </div>
+            <div class="exp-detail-divider"></div>
+            <p class="exp-detail-para">Served as 3D Model Animator for a first-of-its-kind thesis project introducing 3D modeling technology to PCU's academic research. Received the <strong>Best Thesis Award 2018</strong> — the first time 3D modeling had been used as the core technology in a university thesis at PCU.</p>
+            <div class="exp-detail-tags"><span>3D Modeling</span><span>Animation</span><span>Research</span><span>Award Winning</span><span>Pioneer</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="win-statusbar"><span>4 Entries</span><span class="wsb-sep">·</span><span>Philippine Christian University</span></div>
+  </div>
+
+  <div class="os-window hidden" id="win-projects" data-title="Projects — Built Works" style="width:800px;height:600px;left:120px;top:60px;">
+    <div class="win-chrome">
+      <div class="win-controls">
+        <button class="win-btn close"    data-action="close"    aria-label="Close"></button>
+        <button class="win-btn minimize" data-action="minimize" aria-label="Minimize"></button>
+        <button class="win-btn maximize" data-action="maximize" aria-label="Maximize"></button>
+      </div>
+      <div class="win-title-bar">
+        <img src="icons/explorer.ico" class="win-title-icon" onerror="this.style.display='none'" alt=""/>
+        <span class="win-title-text">Projects — Built Works</span>
+      </div>
+      <div class="win-toolbar">
+        <div class="wtb-breadcrumb"><span>Luna Aero OS</span><span class="bc-sep">›</span><span>Projects</span></div>
+        <div class="wtb-right">
+          <button class="wtb-btn active" data-filter="all">All</button>
+          <button class="wtb-btn" data-filter="laravel">Laravel</button>
+          <button class="wtb-btn" data-filter="portfolio">Portfolio</button>
+          <button class="wtb-btn" data-filter="design">Design</button>
+        </div>
+      </div>
+    </div>
+    <div class="win-body">
+      <div class="projects-layout" id="projects-grid">
+        <div class="proj-card proj-featured" data-tags="laravel">
+          <div class="proj-icon"><img src="icons/037.ico" class="proj-icon-img" alt=""/></div>
+          <div class="proj-main">
+            <div class="proj-headrow">
+              <div class="proj-name">FERMS</div>
+              <div class="proj-status-badge current">PCU · Active</div>
+            </div>
+            <div class="proj-subtitle">Facilities & Equipment Reservation Management System</div>
+            <p class="proj-desc">Full Laravel system with multi-step reservation flow, GCash payment integration, SVG blueprint visualizer, and live availability calendars.</p>
+            <div class="proj-tags"><span>Laravel</span><span>PHP</span><span>MySQL</span><span>GCash</span></div>
+          </div>
+        </div>
+
+        <div class="projects-subgrid">
+          <div class="proj-card" data-tags="laravel">
+            <div class="proj-card-top">
+              <div class="proj-icon"><img src="icons/191.ico" class="proj-icon-img" alt=""/></div>
+              <div class="proj-status-badge current">PCU · Active</div>
+            </div>
+            <div class="proj-name">Alumni Tracer System</div>
+            <div class="proj-subtitle">Graduate Tracking & Analytics Platform</div>
+            <p class="proj-desc">Laravel-based alumni tracking with dynamic dark mode, PDF export pipeline, feedback statistics dashboard, duplicate submission prevention, and Synology NAS deployment.</p>
+            <div class="proj-tags"><span>Laravel</span><span>PHP</span><span>PDF Export</span><span>Dark Mode</span></div>
+          </div>
+          <div class="proj-card" data-tags="laravel">
+            <div class="proj-card-top">
+              <div class="proj-icon"><img src="icons/346.ico" class="proj-icon-img" alt=""/></div>
+              <div class="proj-status-badge thesis">M.I.T. Thesis</div>
+            </div>
+            <div class="proj-name">Integrated Registrar's System</div>
+            <div class="proj-subtitle">Academic Records Management</div>
+            <p class="proj-desc">Enterprise-grade academic records platform. Students request official documents digitally; admins manage records with high-security remote access and full audit trail.</p>
+            <div class="proj-tags"><span>Laravel</span><span>Security</span><span>Remote Access</span><span>Academic</span></div>
+          </div>
+          <div class="proj-card" data-tags="laravel portfolio">
+            <div class="proj-card-top">
+              <div class="proj-icon"><img src="icons/071.ico" class="proj-icon-img" alt=""/></div>
+              <div class="proj-status-badge current">PCU · Active</div>
+            </div>
+            <div class="proj-name">PCU Helpdesk System</div>
+            <div class="proj-subtitle">Internal IT Support & Ticket Management</div>
+            <p class="proj-desc">Laravel-powered internal helpdesk for campus IT support. Ticket routing, priority queues, status tracking, and admin resolution dashboards for campus-wide hardware and software issues.</p>
+            <div class="proj-tags"><span>Laravel</span><span>PHP</span><span>MySQL</span><span>IT Support</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="win-statusbar"><span id="proj-count">6 Projects</span><span class="wsb-sep">·</span><span>PCU Systems + Client Works</span></div>
+  </div>
+
+  <div class="os-window hidden" id="win-services" data-title="Services — Web Development" style="width:780px;height:580px;left:120px;top:70px;">
+    <div class="win-chrome">
+      <div class="win-controls">
+        <button class="win-btn close"    data-action="close"    aria-label="Close"></button>
+        <button class="win-btn minimize" data-action="minimize" aria-label="Minimize"></button>
+        <button class="win-btn maximize" data-action="maximize" aria-label="Maximize"></button>
+      </div>
+      <div class="win-title-bar">
+        <img src="icons/vista_marketplace.ico" class="win-title-icon" onerror="this.style.display='none'" alt=""/>
+        <span class="win-title-text">Services — Web Development</span>
+      </div>
+      <div class="win-toolbar"><div class="wtb-breadcrumb"><span>Luna Aero OS</span><span class="bc-sep"></span><span>Services</span></div></div>
+    </div>
+    <div class="win-body">
+      <div class="services-header-row">
+        <div class="srv-headline">What I Build</div>
+        <div class="srv-subheadline">I build web applications, internal systems, dashboards, and custom websites. All prices negotiable — let's talk scope.</div>
+      </div>
+      <div class="services-grid" style="grid-template-columns: repeat(2,1fr);">
+        <div class="srv-card">
+          <img src="icons/www.ico" class="win-title-icon" style="width:36px;height:36px;" alt=""/>
+          <div class="srv-card-name">Portfolio & Personal Sites</div>
+          <div class="srv-card-price">Negotiable</div>
+          <div class="srv-card-tagline">Freelancers, developers, professionals</div>
+          <ul class="srv-card-list">
+            <li>Custom design — no templates</li>
+            <li>Responsive across all devices</li>
+            <li>Contact form integration</li>
+            <li>Timeline based on scope</li>
+          </ul>
+          <button class="srv-cta" onclick="openWindow('contact')">Send Inquiry</button>
+        </div>
+        <div class="srv-card featured-srv">
+          <div class="srv-card-glow" style="--sg:100,160,255"></div>
+          <div class="srv-featured-label">Primary Work</div>
+          <img src="icons/task.ico" class="win-title-icon" onerror="this.style.display='none'" style="width:36px;height:36px;" alt=""/>
+          <div class="srv-card-name">Web Applications & Systems</div>
+          <div class="srv-card-price">Negotiable</div>
+          <div class="srv-card-tagline">Internal tools, dashboards, custom platforms</div>
+          <ul class="srv-card-list">
+            <li>Laravel back-end architecture</li>
+            <li>Database design & API layer</li>
+            <li>Admin dashboards & user auth</li>
+            <li>Security-hardened production codebase</li>
+          </ul>
+          <button class="srv-cta primary" onclick="openWindow('contact')">Send Inquiry</button>
+        </div>
+      </div>
+      <div class="srv-also-row"><div class="srv-also-label">Also available:</div><span class="srv-also-tag">UI/UX Mockups (Figma)</span><span class="srv-also-tag">REST API Design</span><span class="srv-also-tag">Database Architecture</span><span class="srv-also-tag">DevOps Setup</span></div>
+    </div>
+    <div class="win-statusbar"><span>All prices negotiable — let's talk</span></div>
+  </div>
+
+  <div class="os-window hidden" id="win-contact" data-title="Contact — Send Inquiry" style="width:660px;height:660px;left:200px;top:60px;">
+    <div class="win-chrome">
+      <div class="win-controls">
+        <button class="win-btn close"    data-action="close"    aria-label="Close"></button>
+        <button class="win-btn minimize" data-action="minimize" aria-label="Minimize"></button>
+        <button class="win-btn maximize" data-action="maximize" aria-label="Maximize"></button>
+      </div>
+      <div class="win-title-bar">
+        <img src="icons/vista_messenger.ico" class="win-title-icon" onerror="this.style.display='none'" alt=""/>
+        <span class="win-title-text">Contact — Send Inquiry</span>
+      </div>
+      <div class="win-toolbar"><div class="wtb-breadcrumb"><span>Luna Aero OS</span><span class="bc-sep">›</span><span>Contact</span></div></div>
+    </div>
+    <div class="win-body cf2-win-body">
+      <div class="contact-layout">
+        <div class="contact-info-col">
+          <div class="ci-header">Get in touch</div>
+          <div class="ci-desc">Every great project starts with a conversation. Reach out and I'll get back to you promptly.</div>
+          <div class="ci-rows">
+            <div class="ci-row"><img src="icons/093.ico" class="ci-ico" alt=""/><div><div class="ci-label">Primary Email</div><a href="mailto:glenpaulchoco@yahoo.com" class="ci-val">glenpaulchoco@yahoo.com</a></div></div>
+            <div class="ci-row"><img src="icons/020.ico" class="ci-ico" alt=""/><div><div class="ci-label">Work Email</div><a href="mailto:glenpaul.choco@pcu.edu.ph" class="ci-val">glenpaul.choco@pcu.edu.ph</a></div></div>
+            <div class="ci-row"><img src="icons/278.ico" class="ci-ico" alt=""/><div><div class="ci-label">Phone</div><a href="tel:09761281839" class="ci-val">09761281839</a></div></div>
+            <div class="ci-row"><img src="icons/021.ico" class="ci-ico" alt=""/><div><div class="ci-label">Location</div><span class="ci-val">Bacoor Cavite, Habay II, PH</span></div></div>
+          </div>
+          <div class="ci-availability"><div class="cia-dot"></div><span>Available for new projects</span></div>
+        </div>
+
+        <div class="contact-form-col">
+          <div id="cf-success" class="cf-alert success hidden"><span>✓</span><span>Message sent! Glen will reply shortly.</span></div>
+          <div id="cf-error"   class="cf-alert error   hidden"><span>⚠</span><span>Failed to send. Opening your email client as fallback.</span></div>
+
+
+          <div class="cf2-progress" id="cf2-progress">
+            <div class="cf2-step active" data-step="1">
+              <div class="cf2-step-dot"><span class="cf2-step-num">1</span><span class="cf2-step-check">✓</span></div>
+              <span class="cf2-step-label">Your Info</span>
+            </div>
+            <div class="cf2-progress-track"><div class="cf2-progress-fill" id="cf2-progress-fill"></div></div>
+            <div class="cf2-step" data-step="2">
+              <div class="cf2-step-dot"><span class="cf2-step-num">2</span><span class="cf2-step-check">✓</span></div>
+              <span class="cf2-step-label">Project Details</span>
+            </div>
+          </div>
+
+          <form id="contact-form" novalidate>
+
+            <div class="cf2-panel active" data-panel="1">
+              <div class="cf2-field">
+                <input class="cf2-input" type="text" id="cf-name" name="from_name" placeholder=" " required autocomplete="name"/>
+                <label class="cf2-label" for="cf-name">Full Name <span class="cf-req">*</span></label>
+                <div class="cf2-field-glow"></div>
+                <span class="cf-err" id="err-cf-name"></span>
+              </div>
+              <div class="cf2-field">
+                <input class="cf2-input" type="email" id="cf-email" name="from_email" placeholder=" " required autocomplete="email"/>
+                <label class="cf2-label" for="cf-email">Email Address <span class="cf-req">*</span></label>
+                <div class="cf2-field-glow"></div>
+                <span class="cf-err" id="err-cf-email"></span>
+              </div>
+              <button type="button" class="cf2-next-btn" id="cf2-next-btn">
+                <span>Continue</span><span class="cf2-next-arrow">→</span>
+              </button>
+            </div>
+
+
+            <div class="cf2-panel" data-panel="2">
+              <div class="cf2-field cf2-select-field">
+                <select class="cf2-input" id="cf-subject" name="subject" required>
+                  <option value="" disabled selected></option>
+                  <option>Starter Portfolio Inquiry</option>
+                  <option>Pro Portfolio Inquiry</option>
+                  <option>Full Web Application</option>
+                  <option>Laravel Development</option>
+                  <option>General Inquiry</option>
+                </select>
+                <label class="cf2-label cf2-label-static" for="cf-subject">Subject <span class="cf-req">*</span></label>
+                <div class="cf2-field-glow"></div>
+                <span class="cf-err" id="err-cf-subject"></span>
+              </div>
+              <div class="cf2-field">
+                <input class="cf2-input" type="text" id="cf-budget" name="budget" placeholder=" "/>
+                <label class="cf2-label" for="cf-budget">Budget Range <span class="cf-opt">(optional)</span></label>
+                <div class="cf2-field-glow"></div>
+              </div>
+              <div class="cf2-field">
+                <textarea class="cf2-input cf2-textarea" id="cf-message" name="message" rows="4" placeholder=" " required></textarea>
+                <label class="cf2-label" for="cf-message">Tell me about your project <span class="cf-req">*</span></label>
+                <div class="cf2-field-glow"></div>
+                <span class="cf-err" id="err-cf-message"></span>
+              </div>
+              <div class="cf2-btn-row">
+                <button type="button" class="cf2-back-btn" id="cf2-back-btn"><span class="cf2-back-arrow">←</span><span>Back</span></button>
+                <button type="submit" class="cf-submit" id="cf-submit-btn"><span class="cf-shimmer"></span><span class="cf-btn-text">Send Message</span><span class="cf-btn-loader hidden">Sending...</span></button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="win-statusbar"><span>Replies within 24 hours</span><span class="wsb-sep">·</span><span>glenpaulchoco@yahoo.com</span></div>
+  </div>
+
+
+  <div class="os-window hidden" id="win-resume" data-title="Resume.pdf — Quick View" style="width:540px;height:440px;left:260px;top:100px;">
+    <div class="win-chrome">
+      <div class="win-controls">
+        <button class="win-btn close"    data-action="close"    aria-label="Close"></button>
+        <button class="win-btn minimize" data-action="minimize" aria-label="Minimize"></button>
+        <button class="win-btn maximize" data-action="maximize" aria-label="Maximize"></button>
+      </div>
+      <div class="win-title-bar">
+        <img src="icons/vista_book_1.ico" class="win-title-icon" onerror="this.style.display='none'" alt=""/>
+        <span class="win-title-text">Resume.pdf — Quick View</span>
+      </div>
+      <div class="win-toolbar"><div class="wtb-breadcrumb"><span>Luna Aero OS</span><span class="bc-sep">›</span><span>Resume</span></div></div>
+    </div>
+    <div class="win-body resume-body">
+      <div class="resume-preview">
+        <div class="rp-header"><div class="rp-name">GLEN PAUL D. CHOCO</div><div class="rp-title">Web Application Developer · Laravel Specialist</div><div class="rp-contact">09761281839 · glenpaulchoco@yahoo.com · Bacoor Cavite, Habay II</div></div>
+        <div class="rp-section"><div class="rp-sh">SKILLS</div><div class="rp-skills-row"><span>Laravel</span><span>PHP</span><span>HTML</span><span>CSS</span><span>JavaScript</span><span>MySQL</span><span>UI/UX</span><span>Figma</span></div></div>
+        <div class="rp-section"><div class="rp-sh">EXPERIENCE</div><div class="rp-entry"><div class="rp-role">Web Application Programmer · Philippine Christian University (2021–Present)</div><div class="rp-desc">Full-stack Laravel development, RESTful API design, FERMS, Alumni Tracer, Integrated Registrar's System.</div></div><div class="rp-entry"><div class="rp-role">Technical Support · Philippine Christian University (2018–2020)</div><div class="rp-desc">Campus-wide hardware/software troubleshooting and IT maintenance.</div></div></div>
+        <div class="rp-section"><div class="rp-sh">EDUCATION</div><div class="rp-entry"><div class="rp-role">Masters in I.T. · PCU (2020–2023) · Integrated Registrar's System thesis</div></div><div class="rp-entry"><div class="rp-role">B.Sc. I.T. · PCU (2014–2018) ·  Best Thesis 2018</div></div></div>
+      </div>
+      <div class="resume-actions">
+        <button class="ra-btn primary" onclick="openWindow('contact')">Request Full Resume</button>
+        <button class="ra-btn" onclick="openWindow('about')">View Full Profile</button>
+        <button class="ra-btn" onclick="openWindow('projects')">See Projects</button>
+      </div>
+    </div>
+    <div class="win-statusbar"><span>Resume · Glen Paul D. Choco · 2025</span></div>
+  </div>
+
+
+  <div class="os-window hidden" id="win-theme" data-title="Aero Themes — Appearance" style="width:700px;height:540px;left:240px;top:90px;">
+    <div class="win-chrome">
+      <div class="win-controls">
+        <button class="win-btn close"    data-action="close"    aria-label="Close"></button>
+        <button class="win-btn minimize" data-action="minimize" aria-label="Minimize"></button>
+        <button class="win-btn maximize" data-action="maximize" aria-label="Maximize"></button>
+      </div>
+      <div class="win-title-bar">
+        <img src="icons/windowsxpicon.ico" class="win-title-icon" onerror="this.style.display='none'" alt=""/>
+        <span class="win-title-text">Aero Themes — Appearance</span>
+      </div>
+      <div class="win-toolbar"><div class="wtb-breadcrumb"><span>Luna Aero OS</span><span class="bc-sep">›</span><span>Themes</span></div></div>
+    </div>
+    <div class="win-body">
+      <div class="theme-picker-body">
+        <p class="tp-intro">Choose a <strong>Frutiger Aero</strong> theme. All preserve the glassy, aquatic aesthetic — only the palette shifts. Your choice persists across visits.</p>
+        <div class="tp-live-preview" id="tp-live-preview">
+          <div class="tp-live-orb"></div>
+          <div class="tp-live-text">
+            <span class="tp-live-name" id="tp-live-name">Aqua Deep</span>
+            <span class="tp-live-sub">Currently applied theme</span>
+          </div>
+        </div>
+        <div class="tp-grid" id="tp-grid">
+          <div class="tp-card" data-theme="aqua-deep" tabindex="0" role="button"><div class="tp-preview aqua-deep-preview"></div><div class="tp-card-info"><div class="tp-card-name">Aqua Deep</div><div class="tp-card-desc">Classic deep ocean blue — the original Frutiger Aero signature.</div><div class="tp-card-palette"><div class="tp-swatch" style="background:#3ec9ee"></div><div class="tp-swatch" style="background:#1a8eb5"></div><div class="tp-swatch" style="background:#020c18"></div></div></div><div class="tp-card-check">Active</div></div>
+          <div class="tp-card" data-theme="glacier" tabindex="0" role="button"><div class="tp-preview glacier-preview"></div><div class="tp-card-info"><div class="tp-card-name">Glacier White</div><div class="tp-card-desc">Bright icy sky — light-mode Aero at its purest.</div><div class="tp-card-palette"><div class="tp-swatch" style="background:#40b0e8"></div><div class="tp-swatch" style="background:#2090d0"></div><div class="tp-swatch" style="background:#c8e8f8"></div></div></div><div class="tp-card-check">Active</div></div>
+          <div class="tp-card" data-theme="midnight-steel" tabindex="0" role="button"><div class="tp-preview midnight-preview"></div><div class="tp-card-info"><div class="tp-card-name">Midnight Steel</div><div class="tp-card-desc">Gunmetal dark with steel-blue highlights — sleek and serious.</div><div class="tp-card-palette"><div class="tp-swatch" style="background:#6888c8"></div><div class="tp-swatch" style="background:#4060a0"></div><div class="tp-swatch" style="background:#050608"></div></div></div><div class="tp-card-check">Active</div></div>
+          <div class="tp-card" data-theme="millennium-silver" tabindex="0" role="button"><div class="tp-preview millennium-preview"></div><div class="tp-card-info"><div class="tp-card-name">Millennium Silver</div><div class="tp-card-desc">Glossy white & sky-blue — vintage Frutiger Aero, iMac G4 era.</div><div class="tp-card-palette"><div class="tp-swatch" style="background:#7ec8f2"></div><div class="tp-swatch" style="background:#ffffff;border-color:#aedcf7"></div><div class="tp-swatch" style="background:#2f74b8"></div></div></div><div class="tp-card-check">Active</div></div>
+          <div class="tp-card" data-theme="aurora" tabindex="0" role="button"><div class="tp-preview aurora-preview"></div><div class="tp-card-info"><div class="tp-card-name">Aurora</div><div class="tp-card-desc">Emerald green with teal highlights — northern lights atmosphere.</div><div class="tp-card-palette"><div class="tp-swatch" style="background:#18b888"></div><div class="tp-swatch" style="background:#0a7a5a"></div><div class="tp-swatch" style="background:#022018"></div></div></div><div class="tp-card-check">Active</div></div>
+          <div class="tp-card" data-theme="sunset" tabindex="0" role="button"><div class="tp-preview sunset-preview"></div><div class="tp-card-info"><div class="tp-card-name">Sunset</div><div class="tp-card-desc">Warm amber and orange — golden hour over the water.</div><div class="tp-card-palette"><div class="tp-swatch" style="background:#e88030"></div><div class="tp-swatch" style="background:#c05010"></div><div class="tp-swatch" style="background:#501e04"></div></div></div><div class="tp-card-check">Active</div></div>
+          <div class="tp-card" data-theme="violet-crystal" tabindex="0" role="button"><div class="tp-preview violet-preview"></div><div class="tp-card-info"><div class="tp-card-name">Violet Crystal</div><div class="tp-card-desc">Deep purple with lilac glass — a rarer Aero variant.</div><div class="tp-card-palette"><div class="tp-swatch" style="background:#8040d8"></div><div class="tp-swatch" style="background:#5020a0"></div><div class="tp-swatch" style="background:#140828"></div></div></div><div class="tp-card-check">Active</div></div>
+          <div class="tp-card" data-theme="carbon" tabindex="0" role="button"><div class="tp-preview carbon-preview"></div><div class="tp-card-info"><div class="tp-card-name">Carbon</div><div class="tp-card-desc">Neutral greyscale — Aero glass without the color.</div><div class="tp-card-palette"><div class="tp-swatch" style="background:#808080"></div><div class="tp-swatch" style="background:#404040"></div><div class="tp-swatch" style="background:#080808"></div></div></div><div class="tp-card-check">Active</div></div>
+        </div>
+        <div class="tp-footer">Theme persists via sessionStorage · Click any card to apply instantly · Luna Aero OS · 2026 Edition</div>
+      </div>
+    </div>
+    <div class="win-statusbar"><span id="theme-status-label">Active: Aqua Deep</span><span class="wsb-sep">·</span><span>8 Themes</span></div>
+  </div>
+
+
+  <div class="os-window hidden" id="win-terminal" data-title="Terminal — AquaTerm" style="width:700px;height:480px;left:180px;top:100px;">
+    <div class="win-chrome">
+      <div class="win-controls">
+        <button class="win-btn close"    data-action="close"    aria-label="Close"></button>
+        <button class="win-btn minimize" data-action="minimize" aria-label="Minimize"></button>
+        <button class="win-btn maximize" data-action="maximize" aria-label="Maximize"></button>
+      </div>
+      <div class="win-title-bar">
+        <img src="icons/powershell2.ico" class="win-title-icon" onerror="this.style.display='none'" alt=""/>
+        <span class="win-title-text">Terminal — AquaTerm</span>
+      </div>
+      <div class="win-toolbar"><div class="wtb-breadcrumb"><span>Luna Aero OS</span><span class="bc-sep">›</span><span>Terminal</span></div></div>
+    </div>
+    <div class="win-body term-win-body">
+      <div id="term-body" class="term-body"></div>
+      <div class="term-input-row">
+        <span class="tc-prompt-inline"><span class="tc-user">glen</span><span class="tc-at">@</span><span class="tc-host">luna-os</span><span class="tc-sep">:~$</span></span>
+        <input id="term-input" class="term-input" type="text" autocomplete="off" autocorrect="off" spellcheck="false" placeholder="Type a command... (try 'help')"/>
+      </div>
+    </div>
+    <div class="win-statusbar"><span>AquaTerm.0</span></div>
+  </div>
+
+
+  <div class="os-window hidden" id="win-calculator" data-title="Calculator" style="width:300px;height:460px;left:300px;top:120px;">
+    <div class="win-chrome">
+      <div class="win-controls">
+        <button class="win-btn close"    data-action="close"    aria-label="Close"></button>
+        <button class="win-btn minimize" data-action="minimize" aria-label="Minimize"></button>
+        <button class="win-btn maximize" data-action="maximize" aria-label="Maximize"></button>
+      </div>
+      <div class="win-title-bar"><span class="win-title-ico">🔢</span><span class="win-title-text">Calculator</span></div>
+    </div>
+    <div class="win-body calc-body">
+      <div class="calc-display-wrap"><div id="calc-expr" class="calc-expr"></div><div id="calc-display" class="calc-display">0</div></div>
+      <div class="calc-grid">
+        <button class="calc-btn calc-fn" data-val="C">AC</button>
+        <button class="calc-btn calc-fn" data-val="±">±</button>
+        <button class="calc-btn calc-fn" data-val="%">%</button>
+        <button class="calc-btn calc-op" data-val="÷">÷</button>
+        <button class="calc-btn" data-val="7">7</button>
+        <button class="calc-btn" data-val="8">8</button>
+        <button class="calc-btn" data-val="9">9</button>
+        <button class="calc-btn calc-op" data-val="×">×</button>
+        <button class="calc-btn" data-val="4">4</button>
+        <button class="calc-btn" data-val="5">5</button>
+        <button class="calc-btn" data-val="6">6</button>
+        <button class="calc-btn calc-op" data-val="-">−</button>
+        <button class="calc-btn" data-val="1">1</button>
+        <button class="calc-btn" data-val="2">2</button>
+        <button class="calc-btn" data-val="3">3</button>
+        <button class="calc-btn calc-op" data-val="+">+</button>
+        <button class="calc-btn calc-zero" data-val="0">0</button>
+        <button class="calc-btn" data-val=".">.</button>
+        <button class="calc-btn calc-eq" data-val="=">=</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="os-window hidden" id="win-sysinfo" data-title="System Info — Frutiger Aero Edition" style="width:640px;height:480px;left:160px;top:80px;">
+    <div class="win-chrome">
+      <div class="win-controls">
+        <button class="win-btn close"    data-action="close"    aria-label="Close"></button>
+        <button class="win-btn minimize" data-action="minimize" aria-label="Minimize"></button>
+        <button class="win-btn maximize" data-action="maximize" aria-label="Maximize"></button>
+      </div>
+      <div class="win-title-bar">
+        <img src="icons/vista_white.ico" class="win-title-icon" onerror="this.style.display='none'" alt=""/>
+        <span class="win-title-text">System Info — Frutiger Aero Edition</span>
+      </div>
+      <div class="win-toolbar"><div class="wtb-breadcrumb"><span>Luna Aero OS</span><span class="bc-sep">›</span><span>System Info</span></div></div>
+    </div>
+    <div class="win-body">
+      <div class="si-layout">
+        <div class="si-header-card">
+          <div class="si-logo-orb">GPC</div>
+          <div class="si-header-info">
+            <div class="si-os-name">Luna Aero OS · 2026 Edition</div>
+            <div class="si-os-sub">Portfolio Operating System · Glen Paul D. Choco</div>
+            <div class="si-os-build">Built with HTML · CSS · Vanilla JavaScript · No frameworks</div>
+          </div>
+        </div>
+        <div class="si-grid">
+          <div class="si-section">
+            <div class="si-section-title">Developer Info</div>
+            <div class="si-row"><span class="si-key">Name</span><span class="si-val">Glen Paul D. Choco</span></div>
+            <div class="si-row"><span class="si-key">Role</span><span class="si-val">Web Application Developer</span></div>
+            <div class="si-row"><span class="si-key">Location</span><span class="si-val">Bacoor Cavite, PH</span></div>
+            <div class="si-row"><span class="si-key">Experience</span><span class="si-val">4+ Years</span></div>
+            <div class="si-row"><span class="si-key">Education</span><span class="si-val">Masters in I.T. · PCU</span></div>
+            <div class="si-row"><span class="si-key">Status</span><span class="si-val" style="color:#1a9e4a;">Available ●</span></div>
+          </div>
+          <div class="si-section">
+            <div class="si-section-title">Tech Stack</div>
+            <div class="si-row"><span class="si-key">Backend</span><span class="si-val">Laravel · PHP</span></div>
+            <div class="si-row"><span class="si-key">Database</span><span class="si-val">MySQL · MariaDB</span></div>
+            <div class="si-row"><span class="si-key">Frontend</span><span class="si-val">HTML · CSS · JavaScript · Blade</span></div>
+            <div class="si-row"><span class="si-key">Tools</span><span class="si-val">Git · Figma · Composer</span></div>
+            <div class="si-row"><span class="si-key">Learning</span><span class="si-val">DevOps · Infrastructure</span></div>
+            <div class="si-row"><span class="si-key">API</span><span class="si-val">RESTful </span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="win-statusbar"><span>Luna Aero OS · Portfolio Environment</span></div>
+  </div>
+
+<div class="os-window hidden luna-player-shell win7-player" id="win-music" data-autoheight="true" style="width:560px;height:auto;left:860px;top:80px;min-width:520px;min-height:auto;">
+  <div class="win-chrome luna-player-chrome">
+    <div class="win-controls">
+      <button class="win-btn close"    data-action="close"    aria-label="Close"></button>
+      <button class="win-btn minimize" data-action="minimize" aria-label="Minimize"></button>
+      <button class="win-btn maximize" data-action="maximize" aria-label="Maximize"></button>
+    </div>
+    <div class="win-title-bar">
+      <img src="icons/450.ico" class="win-title-icon" onerror="this.style.display='none'" alt=""/>
+      <span class="win-title-text">Luna Player — Glen's Playlist</span>
+    </div>
+  </div>
+
+  <div class="w7p-body">
+    <!-- ═══ NOW PLAYING GLASS PANEL ═══ -->
+    <div class="w7p-now-playing">
+      <div class="w7p-art-frame">
+        <canvas id="xp-visualizer" class="w7p-vis-canvas"></canvas>
+        <div class="w7p-art-bevel"></div>
+      </div>
+      <div class="w7p-track-info">
+        <div class="w7p-title-scroll-wrap">
+          <div class="w7p-title-scroll" id="xp-title-scroll">No Track Loaded — Drop MP3 or Load File</div>
+        </div>
+        <div class="w7p-time-row">
+          <span id="xp-time-val">00:00</span>
+          <span class="w7p-time-sep">/</span>
+          <span id="xp-total-val">00:00</span>
+        </div>
+        <div class="w7p-status-row">
+          <div class="w7p-status-light" id="xp-status-light"></div>
+          <span class="w7p-status-text" id="xp-status-text">STOPPED</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ SEEK BAR ═══ -->
+    <div class="w7p-seek-wrap">
+      <div class="w7p-seek-track" id="xp-seek-track">
+        <div class="w7p-seek-fill" id="xp-seek-fill"></div>
+        <div class="w7p-seek-thumb" id="xp-seek-thumb"></div>
+      </div>
+    </div>
+
+    <!-- ═══ TRANSPORT CONTROLS ═══ -->
+    <div class="w7p-transport-row">
+      <div class="w7p-transport-group">
+        <button class="w7p-btn" id="xp-prev" title="Previous">
+          <img src="icons/469.ico" class="w7p-btn-ico" onerror="this.parentElement.textContent='Prev'" alt="Previous"/>
+        </button>
+        <button class="w7p-btn w7p-btn-play" id="xp-play-btn" title="Play/Pause">
+          <img src="icons/472.ico" class="w7p-btn-ico" onerror="this.parentElement.textContent='Play'" alt="Play"/>
+        </button>
+        <button class="w7p-btn" id="xp-stop-btn" title="Stop">
+          <img src="icons/478.ico" class="w7p-btn-ico" onerror="this.parentElement.textContent='Stop'" alt="Stop"/>
+        </button>
+        <button class="w7p-btn" id="xp-next" title="Next">
+          <img src="icons/473.ico" class="w7p-btn-ico" onerror="this.parentElement.textContent='Next'" alt="Next"/>
+        </button>
+      </div>
+
+      <div class="w7p-mode-group">
+        <button class="w7p-btn w7p-btn-sm" id="xp-shuffle" title="Shuffle">
+          <img src="icons/530.ico" class="w7p-btn-ico-sm" onerror="this.parentElement.textContent='Shuf'" alt="Shuffle"/>
+        </button>
+        <button class="w7p-btn w7p-btn-sm" id="xp-repeat" title="Repeat">
+          <img src="icons/062.ico" class="w7p-btn-ico-sm" onerror="this.parentElement.textContent='Rpt'" alt="Repeat"/>
+        </button>
+      </div>
+
+      <div class="w7p-volume-group">
+        <button class="w7p-btn w7p-btn-sm" id="xp-mute" title="Mute">
+          <img src="icons/273.ico" class="w7p-btn-ico-sm" id="xp-vol-icon" onerror="this.parentElement.textContent='Vol'" alt="Volume"/>
+        </button>
+        <input type="range" id="lp-vol-slider" class="w7p-vol-slider" min="0" max="100" value="100"/>
+      </div>
+
+      <div class="w7p-panel-group">
+        <button class="w7p-btn w7p-btn-sm" id="xp-playlist-toggle" title="Playlist">
+          <img src="icons/179.ico" class="w7p-btn-ico-sm" onerror="this.parentElement.textContent='List'" alt="Playlist"/>
+        </button>
+        <button class="w7p-btn w7p-btn-sm" id="xp-eq-btn" title="Equalizer">
+          <img src="icons/376.ico" class="w7p-btn-ico-sm" onerror="this.parentElement.textContent='EQ'" alt="Equalizer"/>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="w7p-playlist-panel hidden" id="xp-playlist-panel">
+    <div class="w7p-panel-header">
+      <img src="icons/179.ico" class="w7p-panel-header-ico" onerror="this.style.display='none'" alt=""/>
+      <span>PLAYLIST</span>
+      <span class="w7p-pl-count" id="xp-pl-count">0 tracks</span>
+    </div>
+    <div class="w7p-category-tabs hidden" id="xp-category-tabs"></div>
+    <div class="w7p-playlist-list" id="xp-playlist-list">
+      <div class="xp-pl-empty">No tracks loaded. Click Add or drag &amp; drop MP3/OGG/WAV/FLAC files here.</div>
+    </div>
+  </div>
+
+  <div class="w7p-eq-panel hidden" id="xp-eq-panel">
+    <div class="w7p-panel-header">
+      <img src="icons/376.ico" class="w7p-panel-header-ico" onerror="this.style.display='none'" alt=""/>
+      <span>EQUALIZER</span>
+      <span class="w7p-eq-active-label" id="w7p-eq-active-label">Flat</span>
+    </div>
+    <div class="w7p-eq-bands">
+      <div class="w7p-eq-band" data-band="0"><input type="range" class="xp-eq-slider" min="-12" max="12" value="0" orient="vertical"/><div class="w7p-eq-label">60</div></div>
+      <div class="w7p-eq-band" data-band="1"><input type="range" class="xp-eq-slider" min="-12" max="12" value="0" orient="vertical"/><div class="w7p-eq-label">170</div></div>
+      <div class="w7p-eq-band" data-band="2"><input type="range" class="xp-eq-slider" min="-12" max="12" value="0" orient="vertical"/><div class="w7p-eq-label">310</div></div>
+      <div class="w7p-eq-band" data-band="3"><input type="range" class="xp-eq-slider" min="-12" max="12" value="0" orient="vertical"/><div class="w7p-eq-label">600</div></div>
+      <div class="w7p-eq-band" data-band="4"><input type="range" class="xp-eq-slider" min="-12" max="12" value="0" orient="vertical"/><div class="w7p-eq-label">1K</div></div>
+      <div class="w7p-eq-band" data-band="5"><input type="range" class="xp-eq-slider" min="-12" max="12" value="0" orient="vertical"/><div class="w7p-eq-label">3K</div></div>
+      <div class="w7p-eq-band" data-band="6"><input type="range" class="xp-eq-slider" min="-12" max="12" value="0" orient="vertical"/><div class="w7p-eq-label">6K</div></div>
+      <div class="w7p-eq-band" data-band="7"><input type="range" class="xp-eq-slider" min="-12" max="12" value="0" orient="vertical"/><div class="w7p-eq-label">14K</div></div>
+      <div class="w7p-eq-band" data-band="8"><input type="range" class="xp-eq-slider" min="-12" max="12" value="0" orient="vertical"/><div class="w7p-eq-label">16K</div></div>
+    </div>
+    <div class="w7p-eq-presets">
+      <button class="xp-eq-preset active" data-preset="flat">Flat</button>
+      <button class="xp-eq-preset" data-preset="bass">Bass Boost</button>
+      <button class="xp-eq-preset" data-preset="rock">Rock</button>
+      <button class="xp-eq-preset" data-preset="pop">Pop</button>
+      <button class="xp-eq-preset" data-preset="jazz">Jazz</button>
+    </div>
+  </div>
+
+  <input type="file" id="xp-file-input" accept="audio/*" multiple style="display:none"/>
+  <div class="w7p-drop-zone" id="xp-drop-zone">
+    <div class="w7p-drop-text">Drop audio files here</div>
+  </div>
+</div>
+  <div class="pv-lightbox hidden" id="pv-lightbox" role="dialog" aria-modal="true"
+       aria-label="Photo Viewer">
+    <div class="pv-lb-backdrop" id="pv-lb-backdrop"></div>
+    <button class="pv-lb-close"  id="pv-lb-close"  aria-label="Close">✕</button>
+    <button class="pv-lb-prev"   id="pv-lb-prev"   aria-label="Previous photo">‹</button>
+    <button class="pv-lb-next"   id="pv-lb-next"   aria-label="Next photo">›</button>
+    <div class="pv-lb-stage" id="pv-lb-stage">
+      <img class="pv-lb-img" id="pv-lb-img" src="" alt="" draggable="false"/>
+      <div class="pv-lb-spinner" id="pv-lb-spinner"></div>
+    </div>
+    <div class="pv-lb-footer">
+      <div class="pv-lb-caption"  id="pv-lb-caption"></div>
+      <div class="pv-lb-counter"  id="pv-lb-counter"></div>
+      <div class="pv-lb-meta"     id="pv-lb-meta"></div>
+      <div class="pv-lb-actions">
+        <button class="pv-lb-action-btn" id="pv-lb-zoom-in"  title="Zoom in">＋</button>
+        <button class="pv-lb-action-btn" id="pv-lb-zoom-out" title="Zoom out">－</button>
+        <button class="pv-lb-action-btn" id="pv-lb-zoom-fit" title="Fit to screen">⊡</button>
+        <button class="pv-lb-action-btn" id="pv-lb-rotate"   title="Rotate">↻</button>
+        <button class="pv-lb-action-btn" id="pv-lb-download" title="Download" download="">⬇</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="taskbar">
+    <div class="tb-left">
+      <button class="tb-start xp-start-btn" id="tb-start" aria-label="Start Menu" aria-haspopup="true" aria-expanded="false">
+        <div class="xp-start-orb-wrap">
+          <div class="xp-start-orb">
+            <img src="icons/windowsxpicon.ico" class="xp-start-icon" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt=""/>
+            <span class="xp-start-icon-fallback" style="display:none">⊞</span>
+          </div>
+          <div class="xp-start-orb-glow"></div>
+        </div>
+        <span class="tb-start-label xp-start-label">Start</span>
+      </button>
+      <div class="tb-open-wins" id="tb-open-wins"></div>
+    </div>
+    <div class="tb-right">
+      <div class="tb-tray">
+        <button class="tb-chevron" id="tb-chevron-btn" title="Show hidden icons" aria-haspopup="true" aria-expanded="false">
+          <span class="tb-chevron-arrow">▲</span>
+        </button>
+        <div class="tb-flyout hidden" id="tb-flyout">
+          <div class="tb-flyout-arrow"></div>
+          <div class="tb-flyout-item" id="tb-theme-toggle" title="Aero Themes" role="button" tabindex="0">
+            <img src="icons/windowsxpicon.ico" class="tb-flyout-ico" onerror="this.style.display='none'" alt=""/>
+            <span>Aero Themes</span>
+          </div>
+          <div class="tb-flyout-item" id="tb-terminal-btn" title="Terminal" role="button" tabindex="0">
+            <img src="icons/powershell2.ico" class="tb-flyout-ico" onerror="this.style.display='none'" alt=""/>
+            <span>Terminal</span>
+          </div>
+          <div class="tb-flyout-item" id="tb-music-btn" title="Media Player" role="button" tabindex="0">
+            <img src="icons/191.ico" class="tb-flyout-ico" onerror="this.style.display='none'" alt=""/>
+            <span>Media Player</span>
+          </div>
+          <div class="tb-flyout-item" id="tb-shortcuts-btn" title="Keyboard Shortcuts (Alt+/)" role="button" tabindex="0">
+            <span>Keyboard Shortcuts</span>
+          </div>
+        </div>
+
+        <div class="tb-tray-icon tb-tray-avail" title="Available for Work">
+          <span class="tray-avail-dot"></span>
+          <span>Available</span>
+        </div>
+        <div class="tb-clock-wrap" id="tb-clock-wrap" role="button" tabindex="0">
+          <div class="tb-time"    id="tb-time">12:00 AM</div>
+          <div class="tb-date-sm" id="tb-date-sm">Mon Jan 1</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="cal-popover" class="cal-popover hidden">
+    <div class="cal-header"><div class="cal-clock-big" id="cal-clock">12:00:00 AM</div><div class="cal-date-big" id="cal-date-full">Monday, January 1, 2025</div></div>
+    <div class="cal-nav"><button class="cal-nav-btn" id="cal-prev">‹</button><span id="cal-month-label" class="cal-month-label">January 2025</span><button class="cal-nav-btn" id="cal-next">›</button></div>
+    <div class="cal-day-headers"><span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span></div>
+    <div class="cal-grid" id="cal-grid"></div>
+  </div>
+
+  <div class="xp-start-menu hidden" id="start-menu">
+    <div class="xp-sm-header">
+      <div class="xp-sm-avatar-square">
+        <img id="sm-profile-img" class="xp-sm-photo-sq" src="photo/image.png"
+             alt="Glen Paul D. Choco" loading="lazy" decoding="async" draggable="false"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+        <div class="xp-sm-photo-fallback">GPC</div>
+      </div>
+      <div class="xp-sm-user-info">
+        <div class="xp-sm-uname">Glen Paul D. Choco</div>
+        <div class="xp-sm-urole">Web Application Developer</div>
+        <div class="xp-sm-ustatus"><span class="sm-status-dot"></span>Available for Work</div>
+      </div>
+    </div>
+    <div class="xp-sm-body">
+      <div class="xp-sm-col xp-sm-left">
+        <div class="xp-sm-section-label">PORTFOLIO</div>
+        <button class="xp-sm-item" onclick="openWindowFromMenu('about')">
+          <img src="icons/vista_get_started.ico" class="xp-sm-ico" onerror="this.style.display='none'" alt=""/>
+          <div class="xp-sm-item-txt"><span class="xp-sm-item-name">About Glen</span><span class="xp-sm-item-sub">Profile & background</span></div>
+        </button>
+        <button class="xp-sm-item" onclick="openWindowFromMenu('photos')">
+          <img src="icons/pictures.ico" class="xp-sm-ico" onerror="this.style.display='none'" alt=""/>
+          <div class="xp-sm-item-txt">
+            <span class="xp-sm-item-name">Pictures</span>
+            <span class="xp-sm-item-sub">Photo viewer · Alt+G</span>
+          </div>
+        </button>
+        <button class="xp-sm-item" onclick="openWindowFromMenu('experience')">
+          <img src="icons/vista_book_1.ico" class="xp-sm-ico" onerror="this.style.display='none'" alt=""/>
+          <div class="xp-sm-item-txt"><span class="xp-sm-item-name">Experience</span><span class="xp-sm-item-sub">Work history · Alt+2</span></div>
+        </button>
+        <button class="xp-sm-item" onclick="openWindowFromMenu('projects')">
+          <img src="icons/explorer.ico" class="xp-sm-ico" onerror="this.style.display='none'" alt=""/>
+          <div class="xp-sm-item-txt"><span class="xp-sm-item-name">Projects</span><span class="xp-sm-item-sub">Built works · Alt+3</span></div>
+        </button>
+        <button class="xp-sm-item" onclick="openWindowFromMenu('services')">
+          <img src="icons/vista_marketplace.ico" class="xp-sm-ico" onerror="this.style.display='none'" alt=""/>
+          <div class="xp-sm-item-txt"><span class="xp-sm-item-name">Services</span><span class="xp-sm-item-sub">What I build · Alt+4</span></div>
+        </button>
+        <button class="xp-sm-item" onclick="openWindowFromMenu('contact')">
+          <img src="icons/vista_messenger.ico" class="xp-sm-ico" onerror="this.style.display='none'" alt=""/>
+          <div class="xp-sm-item-txt"><span class="xp-sm-item-name">Contact</span><span class="xp-sm-item-sub">Send an inquiry · Alt+5</span></div>
+        </button>
+        <button class="xp-sm-item" onclick="openWindowFromMenu('resume')">
+          <img src="icons/vista_book_1.ico" class="xp-sm-ico" onerror="this.style.display='none'" alt=""/>
+          <div class="xp-sm-item-txt"><span class="xp-sm-item-name">Resume.pdf</span><span class="xp-sm-item-sub">Quick view · Alt+6</span></div>
+        </button>
+      </div>
+      <div class="xp-sm-col-divider"></div>
+      <div class="xp-sm-col xp-sm-right">
+        <div class="xp-sm-section-label">APPLICATIONS</div>
+        <button class="xp-sm-item" onclick="openWindowFromMenu('music')">
+          <img src="icons/itunes1.ico" class="xp-sm-ico" onerror="this.style.display='none'" alt=""/>
+          <div class="xp-sm-item-txt"><span class="xp-sm-item-name">Media Player</span><span class="xp-sm-item-sub">Windows XP Audio Player · Alt+M</span></div>
+        </button>
+        <button class="xp-sm-item" onclick="openWindowFromMenu('terminal')">
+          <img src="icons/powershell2.ico" class="xp-sm-ico" onerror="this.style.display='none'" alt=""/>
+          <div class="xp-sm-item-txt"><span class="xp-sm-item-name">Terminal</span><span class="xp-sm-item-sub">AquaTerm · Alt+T</span></div>
+        </button>
+        <button class="xp-sm-item" onclick="openWindowFromMenu('notepad')">
+          <img src="icons/notepad.ico" class="xp-sm-ico" onerror="this.style.display='none'" alt=""/>
+          <div class="xp-sm-item-txt"><span class="xp-sm-item-name">Notepad</span><span class="xp-sm-item-sub">Quick notes · Alt+N</span></div>
+        </button>
+        <button class="xp-sm-item" onclick="openWindowFromMenu('sysinfo')">
+          <img src="icons/vista_white.ico" class="xp-sm-ico" onerror="this.style.display='none'" alt=""/>
+          <div class="xp-sm-item-txt"><span class="xp-sm-item-name">System Info</span><span class="xp-sm-item-sub">OS & stack info · Alt+S</span></div>
+        </button>
+        <div class="xp-sm-section-label" style="margin-top:8px">SYSTEM</div>
+        <button class="xp-sm-item" onclick="openWindowFromMenu('theme')">
+          <img src="icons/windowsxpicon.ico" class="xp-sm-ico" onerror="this.style.display='none'" alt=""/>
+          <div class="xp-sm-item-txt"><span class="xp-sm-item-name">Aero Themes</span><span class="xp-sm-item-sub">3 themes available</span></div>
+        </button>
+        <button class="xp-sm-item" id="sm-shortcuts-btn">
+          <span class="xp-sm-ico-fallback">⌨</span>
+          <div class="xp-sm-item-txt"><span class="xp-sm-item-name">Keyboard Shortcuts</span><span class="xp-sm-item-sub">All bindings · Alt+/</span></div>
+        </button>
+        <button class="xp-sm-item" id="sm-cascade-btn">
+          <span class="xp-sm-ico-fallback">⧉</span>
+          <div class="xp-sm-item-txt"><span class="xp-sm-item-name">Cascade Windows</span><span class="xp-sm-item-sub">Arrange all open</span></div>
+        </button>
+        <button class="xp-sm-item" id="sm-close-all-btn">
+          <span class="xp-sm-ico-fallback">✕</span>
+          <div class="xp-sm-item-txt"><span class="xp-sm-item-name">Minimize All</span><span class="xp-sm-item-sub">Minimize everything</span></div>
+        </button>
+      </div>
+    </div>
+    <div class="xp-sm-footer">
+      <span class="xp-sm-footer-info">Luna Aero OS · Glen Paul D. Choco</span>
+      <button class="xp-sm-power-btn" onclick="document.getElementById('start-menu').classList.add('hidden')">
+        <span>⏻</span> Close
+      </button>
+    </div>
+  </div>
+
+  <div id="shortcuts-overlay" class="hidden">
+    <div class="sc-panel">
+      <div class="sc-panel-header">
+        <span class="sc-panel-title">Keyboard Shortcuts</span>
+        <button class="sc-panel-close" id="sc-panel-close" aria-label="Close">✕</button>
+      </div>
+      <div class="sc-list" id="sc-list"></div>
+    </div>
+  </div>
+
+  <div class="toast-container" id="toast-container"></div>
+</div>
+
+<div id="mobile-nav" class="hidden">
+  <div class="mnav-logo"><div class="mnav-orb"></div><span>GPC Portfolio</span></div>
+  <nav class="mnav-links">
+    <a href="#m-about"      class="mnav-link">About</a>
+    <a href="#m-experience" class="mnav-link">Experience</a>
+    <a href="#m-projects"   class="mnav-link">Projects</a>
+    <a href="#m-services"   class="mnav-link">Services</a>
+    <a href="#m-contact"    class="mnav-link">Contact</a>
+  </nav>
+</div>
+
+<div id="mobile-content" class="hidden">
+  <section class="m-hero"><canvas id="m-hero-canvas"></canvas><div class="mh-content"><div class="mh-badge"><span class="mh-dot"></span>Available for Work</div><h1 class="mh-name">Glen Paul<br/><span>D. Choco</span></h1><p class="mh-role" id="m-typed-role">Web Application Developer</p><p class="mh-desc">Master's graduate in I.T. Full-stack Laravel engineer based in Bacoor Cavite, PH. Building production-grade web systems for 4+ years.</p><div class="mh-stats"><div class="mhs"><span class="mhs-n">4+</span><span class="mhs-l">Years</span></div><div class="mhs"><span class="mhs-n">MIT</span><span class="mhs-l">Graduate</span></div><div class="mhs"><span class="mhs-n">5+</span><span class="mhs-l">Systems</span></div></div><div class="mh-actions"><a href="#m-contact" class="mh-btn primary">Get In Touch</a><a href="#m-experience" class="mh-btn">View Work</a></div></div></section>
+
+  <section class="m-section" id="m-about">
+    <div class="ms-label">About</div>
+    <h2 class="ms-heading">Who I Am</h2>
+    <div class="ms-card">
+      <p>Master's graduate in Information Technology from Philippine Christian University. Full-stack programmer for 4+ years.</p>
+      <div class="ms-achievement">
+        <img src="icons/090.ico" style="width:20px;height:20px;object-fit:contain;" alt=""/>
+        <span>Best Thesis Award 2018 — First 3D modeling thesis at PCU</span>
+      </div>
+      <div class="ms-achievement">
+        <img src="icons/038.ico" style="width:20px;height:20px;object-fit:contain;" alt=""/>
+        <span>Masters in I.T. · PCU 2020–2023</span>
+      </div>
+      <div class="m-skill" data-w="92" style="margin-top:6px">
+        <div class="m-sk-header"><span>Laravel</span><span>92%</span></div>
+        <div class="m-sk-track"><div class="m-sk-fill"></div></div>
+      </div>
+      <div class="m-skill" data-w="88">
+        <div class="m-sk-header"><span>PHP</span><span>88%</span></div>
+        <div class="m-sk-track"><div class="m-sk-fill"></div></div>
+      </div>
+      <div class="m-skill" data-w="85">
+        <div class="m-sk-header"><span>HTML / CSS</span><span>85%</span></div>
+        <div class="m-sk-track"><div class="m-sk-fill"></div></div>
+      </div>
+      <div class="m-skill" data-w="80">
+        <div class="m-sk-header"><span>MySQL</span><span>80%</span></div>
+        <div class="m-sk-track"><div class="m-sk-fill"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="m-section" id="m-experience">
+    <div class="ms-label">Experience</div>
+    <h2 class="ms-heading">Work History</h2>
+    <div class="m-timeline">
+      <div class="mt-entry">
+        <div class="mt-node active"></div>
+        <div class="mt-card">
+          <div class="mt-period">2021 – Present</div>
+          <div class="mt-role">Web Application Programmer</div>
+          <div class="mt-company">Philippine Christian University</div>
+          <p class="mt-desc">Full-stack Laravel development, RESTful API design, FERMS, Alumni Tracer.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="m-section" id="m-projects">
+    <div class="ms-label">Projects</div>
+    <h2 class="ms-heading">Built Works</h2>
+    <div class="m-proj-list">
+      <div class="m-proj-item">
+        <div class="mpi-icon"><img src="icons/053.ico" style="width:28px;height:28px;object-fit:contain;" alt=""/></div>
+        <div>
+          <div class="mpi-name">FERMS · PCU</div>
+          <div class="mpi-desc">Facilities reservation with AI doc verification and GCash payment.</div>
+        </div>
+      </div>
+      <div class="m-proj-item">
+        <div class="mpi-icon"><img src="icons/316.ico" style="width:28px;height:28px;object-fit:contain;" alt=""/></div>
+        <div>
+          <div class="mpi-name">Luna Aero OS Portfolio</div>
+          <div class="mpi-desc">This page — Frutiger Aero desktop OS in pure HTML/CSS/JS.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="m-section" id="m-services">
+    <div class="ms-label">Services</div>
+    <h2 class="ms-heading">What I Build</h2>
+    <div class="m-srv-cards">
+      <div class="m-srv-card featured-m">
+        <div class="m-srv-feat-badge">Primary Work</div>
+        <div class="m-srv-icon"><img src="icons/349.ico" style="width:28px;height:28px;object-fit:contain;" alt=""/></div>
+        <div class="m-srv-name">Web Applications & Systems</div>
+        <div class="m-srv-price">Negotiable</div>
+        <ul class="m-srv-list">
+          <li>Laravel back-end architecture</li>
+          <li>Database design & API layer</li>
+          <li>Admin dashboards & user auth</li>
+          <li>Security-hardened codebase</li>
+        </ul>
+        <a href="#m-contact" class="m-srv-cta primary">Inquire</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="m-section" id="m-contact">
+    <div class="ms-label">Contact</div>
+    <h2 class="ms-heading">Let's Build Something.</h2>
+    <div class="ms-card">
+      <div class="m-ci">
+        <img src="icons/093.ico" style="width:18px;height:18px;object-fit:contain;" alt=""/>
+        <a href="mailto:glenpaulchoco@yahoo.com">glenpaulchoco@yahoo.com</a>
+      </div>
+      <div class="m-ci">
+        <img src="icons/278.ico" style="width:18px;height:18px;object-fit:contain;" alt=""/>
+        <a href="tel:09761281839">09761281839</a>
+      </div>
+      <div class="m-ci">
+        <img src="icons/021.ico" style="width:18px;height:18px;object-fit:contain;" alt=""/>
+        <span>Bacoor Cavite, Habay II, PH</span>
+      </div>
+    </div>
+  </section>
+
+  <footer class="m-footer">
+    <div class="mf-inner">
+      <div class="mf-logo"><div class="mf-orb"></div><span>Glen Paul D. Choco</span></div>
+      <p class="mf-copy">© 2026 Glen Paul D. Choco. All rights reserved.</p>
+    </div>
+  </footer>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script src="musics/tracklist.js"></script>
+<script src="pictures/picturelist.js"></script>
+<script src="main.js"></script>
+</body>
+</html>

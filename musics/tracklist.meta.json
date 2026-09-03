@@ -1,0 +1,144 @@
+{
+  "generated": "2026-09-03T22:37:19.789Z",
+  "generatedBy": "generate-tracklist.js",
+  "totalCategories": 2,
+  "totalTracks": 11,
+  "totalSizeMB": 71.62,
+  "palettes": [
+    {
+      "accent": "#3ec9ee",
+      "glow": "rgba(62,201,238,0.5)",
+      "name": "aqua"
+    },
+    {
+      "accent": "#22ddb0",
+      "glow": "rgba(34,221,176,0.5)",
+      "name": "aurora"
+    },
+    {
+      "accent": "#a060f0",
+      "glow": "rgba(160,96,240,0.5)",
+      "name": "violet"
+    },
+    {
+      "accent": "#f09030",
+      "glow": "rgba(240,144,48,0.5)",
+      "name": "sunset"
+    },
+    {
+      "accent": "#f060a0",
+      "glow": "rgba(240,96,160,0.5)",
+      "name": "rose"
+    },
+    {
+      "accent": "#6888c8",
+      "glow": "rgba(104,136,200,0.5)",
+      "name": "steel"
+    },
+    {
+      "accent": "#42d68a",
+      "glow": "rgba(66,214,138,0.5)",
+      "name": "green"
+    },
+    {
+      "accent": "#f5c842",
+      "glow": "rgba(245,200,66,0.5)",
+      "name": "gold"
+    }
+  ],
+  "categories": [
+    {
+      "id": "chill",
+      "label": "Chill",
+      "folder": "musics/chill",
+      "trackCount": 4,
+      "tracks": [
+        {
+          "id": "chill_c99f57d4_0",
+          "file": "Ark Patrol - Let Go (ft. Veronika Redd).mp3",
+          "relPath": "chill/Ark Patrol - Let Go (ft. Veronika Redd).mp3",
+          "hash": "c99f57d4",
+          "sizeMB": 5.68
+        },
+        {
+          "id": "chill_058a6e3e_1",
+          "file": "beabadoobee - Glue Song.mp3",
+          "relPath": "chill/beabadoobee - Glue Song.mp3",
+          "hash": "058a6e3e",
+          "sizeMB": 2.02
+        },
+        {
+          "id": "chill_3e77c017_2",
+          "file": "Sarah Kang - Lazy Afternoon.mp3",
+          "relPath": "chill/Sarah Kang - Lazy Afternoon.mp3",
+          "hash": "3e77c017",
+          "sizeMB": 4.01
+        },
+        {
+          "id": "chill_bd10fdb5_3",
+          "file": "Yama - Sleeping town.mp3",
+          "relPath": "chill/Yama - Sleeping town.mp3",
+          "hash": "bd10fdb5",
+          "sizeMB": 4.53
+        }
+      ]
+    },
+    {
+      "id": "favorites",
+      "label": "Favorites",
+      "folder": "musics/favorites",
+      "trackCount": 7,
+      "tracks": [
+        {
+          "id": "favorites_95295960_0",
+          "file": "Drake - Janice STFU.mp3",
+          "relPath": "favorites/Drake - Janice STFU.mp3",
+          "hash": "95295960",
+          "sizeMB": 9.68
+        },
+        {
+          "id": "favorites_d8ed636b_1",
+          "file": "Drake - Whisper My Name.mp3",
+          "relPath": "favorites/Drake - Whisper My Name.mp3",
+          "hash": "d8ed636b",
+          "sizeMB": 5.07
+        },
+        {
+          "id": "favorites_9d61f315_2",
+          "file": "Frank Ocean - Pink  White.mp3",
+          "relPath": "favorites/Frank Ocean - Pink  White.mp3",
+          "hash": "9d61f315",
+          "sizeMB": 4.23
+        },
+        {
+          "id": "favorites_4a5b59c8_3",
+          "file": "Imogen Heap - I'm God.mp3",
+          "relPath": "favorites/Imogen Heap - I'm God.mp3",
+          "hash": "4a5b59c8",
+          "sizeMB": 6.27
+        },
+        {
+          "id": "favorites_1fcbec44_4",
+          "file": "Joji - Past Won't Leave My Bed.mp3",
+          "relPath": "favorites/Joji - Past Won't Leave My Bed.mp3",
+          "hash": "1fcbec44",
+          "sizeMB": 3.8
+        },
+        {
+          "id": "favorites_d45b8529_5",
+          "file": "Kali Uchis  telepatía.mp3",
+          "relPath": "favorites/Kali Uchis  telepatía.mp3",
+          "hash": "d45b8529",
+          "sizeMB": 3.67
+        },
+        {
+          "id": "favorites_0cc1cf6c_6",
+          "file": "Travis Scott - GOD MODE (Full Mixtape).mp3",
+          "relPath": "favorites/Travis Scott - GOD MODE (Full Mixtape).mp3",
+          "hash": "0cc1cf6c",
+          "sizeMB": 22.66
+        }
+      ]
+    }
+  ]
+}
