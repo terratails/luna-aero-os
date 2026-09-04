@@ -1,5 +1,5 @@
 'use strict';
-
+/* js/window-resize.js */
 
 const RESIZE_DIRS = [
   { dir:'n',  cursor:'n-resize'  },

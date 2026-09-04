@@ -1,5 +1,5 @@
 'use strict';
-
+/* js/window-lifecycle.js */
 
 function openWindow(id) {
   const win = document.getElementById('win-' + id);

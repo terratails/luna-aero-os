@@ -1,5 +1,5 @@
 'use strict';
-
+/* js/themes.js */
 function initThemePicker() {
   const grid = document.getElementById('tp-grid');
   if (!grid) return;

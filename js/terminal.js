@@ -1,4 +1,4 @@
-
+/* js/terminal.js */
 function initTerminal() {
   const body  = document.getElementById('term-body');
   const input = document.getElementById('term-input');

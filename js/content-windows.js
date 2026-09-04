@@ -1,5 +1,5 @@
 'use strict';
-
+/* js/content-windows.js */
 function initExperienceWindow() {
   document.querySelectorAll('.exp-nav-item').forEach(item => {
     item.addEventListener('click', () => {

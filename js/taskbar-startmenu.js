@@ -1,5 +1,5 @@
 'use strict';
-
+/* js/taskbar-startmenu.js */
 function initTaskbar() {
   function updateClock() {
     const now  = new Date();

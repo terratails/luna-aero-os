@@ -1,5 +1,5 @@
 'use strict';
-
+/* js/state.js */
 const OS = {
   bootComplete:      false,
   loggedIn:          false,

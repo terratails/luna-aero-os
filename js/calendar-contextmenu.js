@@ -1,5 +1,5 @@
 'use strict';
-
+/* js/calendar-contextmenu.js */
 function initCalendar() {
   const popover = document.getElementById('cal-popover');
   if (!popover) return;

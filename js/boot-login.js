@@ -1,5 +1,5 @@
 'use strict';
-
+/* js/boot-login.js */
 
 function initBoot() {
   const canvas = document.getElementById('boot-canvas');

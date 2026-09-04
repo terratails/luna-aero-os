@@ -1,5 +1,5 @@
 'use strict';
-
+/* js/keyboard-shortcuts.js */
 const SHORTCUT_DEFS = [
   { keys: ['Alt','1'],       desc: 'Open About Glen' },
   { keys: ['Alt','2'],       desc: 'Open Experience' },

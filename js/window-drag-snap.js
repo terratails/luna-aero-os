@@ -1,5 +1,5 @@
 'use strict';
-
+/* js/window-drag-snap.js */
 function initSnapSystem() {
   const ghost = document.createElement('div');
   ghost.id        = 'snap-ghost';

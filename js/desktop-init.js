@@ -1,5 +1,5 @@
 'use strict';
-
+/* js/desktop-init.js */
 function initDesktop() {
   initWallpaper();
   initDesktopIcons();
@@ -27,7 +27,28 @@ function initDesktop() {
   initContactForm();
   showToast('Welcome', 'Luna Aero OS loaded. Drag windows to screen edges to snap, or grab any edge/corner to resize!', 'img:icons/515.ico');
 }
+document.addEventListener('DOMContentLoaded', () => {
+  try {
+    const _t = sessionStorage.getItem('luna-theme');
+    if (_t) document.documentElement.setAttribute('data-theme', _t);
+  } catch(_) {}
 
+  handleViewportChange();
+
+  if (OS.narrow) {
+    const boot  = document.getElementById('boot-screen');
+    const login = document.getElementById('login-screen');
+    if (boot)  boot.style.display  = 'none';
+    if (login) login.style.display = 'none';
+    document.getElementById('mobile-nav')?.classList.remove('hidden');
+    document.getElementById('mobile-content')?.classList.remove('hidden');
+    initMobileSkillBars();
+  } else {
+    initBoot();
+  }
+
+  initRoleTypewriters();
+});
 function initWallpaper() {
   const canvas = document.getElementById('wallpaper-canvas');
   if (!canvas) return;
