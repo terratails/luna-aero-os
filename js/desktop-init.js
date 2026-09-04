@@ -11,8 +11,6 @@ function initDesktop() {
   initKeyboardShortcuts();
   initShortcutsPanel();
   initThemePicker();
-  initNotepad();
-  initCalculator();
   initTerminal();
   initExperienceWindow();
   initProjectsWindow();
@@ -25,6 +23,8 @@ function initDesktop() {
   resetIdleTimer();
   initPhotoViewer();
   initContactForm();
+  initThemePicker();
+  initTerminal();
   showToast('Welcome', 'Luna Aero OS loaded. Drag windows to screen edges to snap, or grab any edge/corner to resize!', 'img:icons/515.ico');
 }
 document.addEventListener('DOMContentLoaded', () => {
