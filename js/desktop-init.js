@@ -36,7 +36,14 @@ function initWallpaper() {
   canvas.height = window.innerHeight;
   drawSceneField(ctx, canvas, 'wallpaper');
 }
-
+function initMobileSkillBars() {
+  setTimeout(() => {
+    document.querySelectorAll('.m-sk-fill').forEach(fill => {
+      const w = fill.closest('.m-skill')?.dataset.w || 0;
+      fill.style.width = w + '%';
+    });
+  }, 500);
+}
 function initProfilePicture() {
   ['asb-profile-img', 'sm-profile-img'].forEach(id => {
     const img = document.getElementById(id);

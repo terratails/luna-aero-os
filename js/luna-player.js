@@ -60,7 +60,39 @@ function initMusicPlayer() {
       btn.classList.add('active');
     });
   });
+function formatTime(s) {
+  if (!isFinite(s)) return '--:--';
+  return Math.floor(s / 60).toString().padStart(2, '0') + ':' + Math.floor(s % 60).toString().padStart(2, '0');
+}
 
+function drawVolumeDial(angleDeg) {
+  const canvas = document.getElementById('xp-volume-dial');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const cx = 24, cy = 24, r = 18;
+  ctx.clearRect(0, 0, 48, 48);
+  const grd = ctx.createRadialGradient(cx - 6, cy - 6, 2, cx, cy, r);
+  grd.addColorStop(0, '#1a60d0'); grd.addColorStop(0.5, '#0a40a0'); grd.addColorStop(1, '#061c5e');
+  ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI * 2); ctx.fillStyle = grd; ctx.fill();
+  ctx.strokeStyle = 'rgba(140,200,255,0.6)'; ctx.lineWidth = 1.5; ctx.stroke();
+  const shine = ctx.createRadialGradient(cx - 7, cy - 7, 1, cx - 4, cy - 4, r * 0.7);
+  shine.addColorStop(0, 'rgba(255,255,255,0.5)'); shine.addColorStop(1, 'rgba(255,255,255,0)');
+  ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI * 2); ctx.fillStyle = shine; ctx.fill();
+  const startRad = 225 * Math.PI / 180;
+  const angleRad = angleDeg * Math.PI / 180;
+  ctx.beginPath();
+  ctx.arc(cx, cy, r - 4, startRad, angleRad, angleDeg < 225);
+  ctx.strokeStyle = `hsl(${140 + (1 - MP.volume) * (-140)},80%,55%)`;
+  ctx.lineWidth = 3; ctx.stroke();
+  const px = cx + Math.cos(angleRad) * (r - 6);
+  const py = cy + Math.sin(angleRad) * (r - 6);
+  ctx.beginPath();
+  ctx.moveTo(cx + Math.cos(angleRad) * 4, cy + Math.sin(angleRad) * 4);
+  ctx.lineTo(px, py);
+  ctx.strokeStyle = '#ffffff'; ctx.lineWidth = 2; ctx.lineCap = 'round'; ctx.stroke();
+  ctx.beginPath(); ctx.arc(cx, cy, 3, 0, Math.PI * 2);
+  ctx.fillStyle = 'rgba(220,240,255,0.9)'; ctx.fill();
+}
   document.addEventListener('keydown', e => {
     if (OS.activeWindow !== 'music') return;
     const map = {

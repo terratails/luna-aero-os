@@ -16,7 +16,13 @@ function initSnapSystem() {
     SNAP.zoneEls[z] = el;
   });
 }
-
+function getSnapIcon(zone) {
+  const icons = {
+    maximize: '⬜', left: '◧', right: '◨',
+    tl: '◸', tr: '◹', bl: '◺', br: '◿',
+  };
+  return icons[zone] || '⊞';
+}
 function computeSnapZone(cx, cy) {
   const vw = OS.viewport.w;
   const vh = OS.viewport.h;
