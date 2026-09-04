@@ -1,11 +1,5 @@
 'use strict';
-/* ================================================================
-   01-boot-login.js
-   Luna Aero OS — Boot sequence, login screen, shared scene canvas
-   ----------------------------------------------------------------
-   Depends on: 00-state.js (OS, BOOT_STEPS, sceneFrames)
-   Exposes:    initBoot, showLogin, doLogin, drawSceneField
-   ================================================================ */
+
 
 function initBoot() {
   const canvas = document.getElementById('boot-canvas');
@@ -84,8 +78,6 @@ function doLogin() {
   }, 600);
 }
 
-/* Shared animated bubble/sparkle/wave scene used by boot, login, wallpaper,
-   and the screensaver canvases. Reads the current --data-theme to recolor. */
 function drawSceneField(ctx, canvas, key) {
   const bubbles = Array.from({ length: 14 }, () => ({
     x: Math.random() * canvas.width, y: Math.random() * canvas.height,
