@@ -1934,7 +1934,7 @@ ${[...OS.openWindows.keys()].join(', ') || '(none)'}`,
   ●<span class="tc-accent">▓▓▓</span>●  <span class="tc-green">Stack:</span>  Laravel · PHP · MySQL · JS · Figma
    ●●●●●   <span class="tc-green">Role:</span>   Web Application Developer
            <span class="tc-green">Loc:</span>    Bacoor Cavite, PH
-           <span class="tc-green">Built:</span>  HTML · CSS · Vanilla JS · No frameworks
+           <span class="tc-green">Built:</span>  HTML · CSS · JS
            <span class="tc-green">Status:</span> Available for Work ●`,
 };
 

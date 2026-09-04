@@ -504,6 +504,7 @@ a { color: inherit; }
   50%     { box-shadow: 0 0 64px var(--aero-glow), 0 0 128px rgba(62,201,238,0.28); }
 }
 .boot-orb-inner { position: absolute; inset: 6px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, rgba(255,255,255,0.9) 0%, var(--luna-blue-3) 42%, var(--luna-title-shade) 100%); }
+.boot-orb-logo { position: absolute; inset: 6px; width: calc(100% - 12px); height: calc(100% - 12px); border-radius: 50%; object-fit: cover; z-index: 1; box-shadow: inset 0 1px 0 rgba(255,255,255,0.4); }
 .boot-orb-specular { position: absolute; top: 10%; left: 18%; width: 26%; height: 13%; border-radius: 50%; background: rgba(255,255,255,0.85); filter: blur(2px); }
 .boot-orb-reflect { position: absolute; bottom: 14%; right: 14%; width: 16%; height: 8%; border-radius: 50%; background: rgba(255,255,255,0.4); filter: blur(1px); }
 .boot-brand { display: flex; flex-direction: column; }
@@ -1275,7 +1276,8 @@ a { color: inherit; }
 /* ═══ SYSTEM INFO ═══ */
 .si-layout { display: flex; flex-direction: column; gap: 16px; }
 .si-header-card { display: flex; align-items: center; gap: 16px; padding: 16px; background: rgba(62,201,238,0.03); border: 1px solid var(--luna-blue-4); border-radius: 8px; flex-wrap: wrap; }
-.si-logo-orb { width: 54px; height: 54px; border-radius: 50%; flex-shrink: 0; background: radial-gradient(circle at 35% 30%,rgba(255,255,255,0.7),transparent 60%),radial-gradient(circle at 60% 70%,var(--luna-blue-2),var(--luna-title-shade)); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 14px; font-weight: 700; color: white; box-shadow: 0 4px 16px var(--aero-glow); transition: transform 0.3s var(--ease-pop); cursor: default; }
+.si-logo-orb { width: 54px; height: 54px; border-radius: 50%; flex-shrink: 0; background: radial-gradient(circle at 35% 30%,rgba(255,255,255,0.7),transparent 60%),radial-gradient(circle at 60% 70%,var(--luna-blue-2),var(--luna-title-shade)); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 14px; font-weight: 700; color: white; box-shadow: 0 4px 16px var(--aero-glow); transition: transform 0.3s var(--ease-pop); cursor: default; overflow: hidden; }
+.si-logo-orb-img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
 .si-logo-orb:hover { transform: scale(1.1) rotate(5deg); }
 .si-header-info { display: flex; flex-direction: column; gap: 3px; }
 .si-os-name { font-family: var(--font-display); font-size: 18px; font-weight: 700; color: var(--ink); }
