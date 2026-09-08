@@ -23,15 +23,17 @@ function initBoot() {
 }
 
 function showLogin() {
-  const boot  = document.getElementById('boot-screen');
-  const login = document.getElementById('login-screen');
+  const boot = document.getElementById('boot-screen');
   boot.style.transition = 'opacity 0.5s ease';
   boot.style.opacity    = '0';
   setTimeout(() => {
-    boot.style.display  = 'none';
-    login.style.display = 'flex';
-    initLoginCanvas();
-    initLoginClock();
+    boot.style.display = 'none';
+    const desktop = document.getElementById('desktop');
+    desktop.classList.remove('hidden');
+    desktop.style.display = 'block';
+    OS.loggedIn     = true;
+    OS.bootComplete = true;
+    initDesktop();
   }, 500);
 }
 

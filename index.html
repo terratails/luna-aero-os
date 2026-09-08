@@ -95,6 +95,13 @@
       </div>
       <span class="dicon-label">Pictures</span>
     </div>
+    <div class="dicon" data-window="browser" tabindex="0" role="button" aria-label="Browser">
+      <div class="dicon-img">
+        <img src="icons/www.ico" class="dicon-img-real" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt=""/>
+        <div class="dicon-fa" style="display:none">🌐</div>
+      </div>
+      <span class="dicon-label">Browser</span>
+    </div>
     <div class="dicon" data-window="experience" tabindex="0" role="button" aria-label="Experience">
       <div class="dicon-img">
         <img src="icons/030.ico" class="dicon-img-real" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt=""/>
@@ -734,6 +741,49 @@
     <div class="win-statusbar"></div>
   </div>
 
+  <div class="os-window hidden" id="win-browser" data-title="Browser — Luna Web" style="width:900px;height:640px;left:100px;top:50px;">
+  <div class="win-chrome">
+    <div class="win-controls">
+      <button class="win-btn close"    data-action="close"    aria-label="Close"></button>
+      <button class="win-btn minimize" data-action="minimize" aria-label="Minimize"></button>
+      <button class="win-btn maximize" data-action="maximize" aria-label="Maximize"></button>
+    </div>
+    <div class="win-title-bar">
+      <img src="icons/www.ico" class="win-title-icon" onerror="this.style.display='none'" alt=""/>
+      <span class="win-title-text" id="browser-title-text">Browser — Luna Web</span>
+    </div>
+    <div class="win-toolbar browser-nav-bar">
+      <button class="br-nav-btn" id="br-back" title="Back" disabled>←</button>
+      <button class="br-nav-btn" id="br-forward" title="Forward" disabled>→</button>
+      <button class="br-nav-btn" id="br-reload" title="Reload">↻</button>
+      <button class="br-nav-btn" id="br-home" title="Home">⌂</button>
+      <div class="br-addr-wrap">
+        <span class="br-addr-lock" id="br-addr-lock">🔒</span>
+        <input type="text" class="br-addr-input" id="br-addr-input" placeholder="Search or enter address" autocomplete="off"/>
+        <button class="br-addr-go" id="br-addr-go" title="Go">→</button>
+      </div>
+    </div>
+    <div class="br-bookmarks-bar" id="br-bookmarks-bar">
+      <button class="br-bm" data-url="https://html.duckduckgo.com/html/">🔍 Search</button>
+      <button class="br-bm" data-url="https://en.wikipedia.org/wiki/Special:Random">Wikipedia</button>
+      <button class="br-bm" data-url="https://developer.mozilla.org/en-US/docs/Web/JavaScript">MDN Docs</button>
+    </div>
+  </div>
+  <div class="win-body br-win-body">
+    <div class="br-blocked hidden" id="br-blocked">
+      <div class="br-blocked-icon">⚠</div>
+      <div class="br-blocked-title">This site can't be displayed here</div>
+      <div class="br-blocked-desc" id="br-blocked-desc">The site refused to load inside Luna Web's browser window. Many sites block embedding for security reasons.</div>
+      <button class="br-blocked-btn" id="br-blocked-open">Open in a real tab instead →</button>
+    </div>
+    <iframe id="br-iframe" class="br-iframe" src="about:blank" title="Browser content" sandbox="allow-scripts allow-same-origin allow-forms allow-popups"></iframe>
+    <div class="br-loading hidden" id="br-loading"><div class="br-loading-bar"></div></div>
+  </div>
+  <div class="win-statusbar">
+    <span id="br-status-text">Ready</span>
+  </div>
+</div>
+
   <div class="os-window hidden" id="win-sysinfo" data-title="System Info — Frutiger Aero Edition" style="width:640px;height:480px;left:160px;top:80px;">
     <div class="win-chrome">
       <div class="win-controls">
@@ -1017,6 +1067,10 @@
             <span class="xp-sm-item-sub">Photo viewer</span>
           </div>
         </button>
+        <button class="xp-sm-item" onclick="openWindowFromMenu('browser')">
+          <img src="icons/www.ico" class="xp-sm-ico" onerror="this.style.display='none'" alt=""/>
+          <div class="xp-sm-item-txt"><span class="xp-sm-item-name">Browser</span><span class="xp-sm-item-sub">Luna Web · Alt+B</span></div>
+        </button>
         <button class="xp-sm-item" onclick="openWindowFromMenu('experience')">
           <img src="icons/vista_book_1.ico" class="xp-sm-ico" onerror="this.style.display='none'" alt=""/>
           <div class="xp-sm-item-txt"><span class="xp-sm-item-name">Experience</span><span class="xp-sm-item-sub">Work history · Alt+2</span></div>
@@ -1249,5 +1303,6 @@
 <script src="js/content-windows.js"></script>
 <script src="musics/tracklist.js"></script>
 <script src="pictures/picturelist.js"></script>
+<script src="js/browser.js"></script>
 </body>
 </html>
